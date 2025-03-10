@@ -1,6 +1,27 @@
 body {
-    background-color: lightblue;
-    color: maroon;
+    background-color: lightblue; /* фоновый цвет страницы */
+    color: maroon; /* цвет текста на странице */
+    font-family: Arial; /* основной шрифт для текста на странице */
+    margin: 0px; /* Убирает внешние отступы */
+}
+
+main{
+    background-color: lightgreen;
+    color: rgb(75, 0, 161);
+    font-family: Arial;
+    margin: 0px;
+}
+
+footer{
+    background-color: lightyellow;
+    color: rgb(109, 3, 43);
+    font-family: Arial;
+    margin: 0px;
+}
+
+header{
+    background-color: lightpink;
+    color: rgb(161, 124, 0);
     font-family: Arial;
     margin: 0px;
 }
