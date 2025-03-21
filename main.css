@@ -29,6 +29,7 @@ header{
 a{ /* ссылки */
     color: green;
     text-decoration: none;
+    transition: 1s 2s; /* активироваться будет в течение 1с, задержка активации 2с */
 }
 
 a:link{ /* ни разу не посещённая ссылка */
@@ -45,7 +46,8 @@ a:hover{ /* ссылки когда на них наводят курсор */
     color: red;
     text-decoration: underline;
     text-shadow: 3px 2px 2px rgba(255, 255, 255, 0.8); /* тени */
-    background-color:rgb(75, 0, 161)
+    background-color:rgb(75, 0, 161);
+    transition: 0.3s; /* активироваться будет в течение 0.3с */
 }
 
 a:active{ /* ссылки когда на них нажимают */
