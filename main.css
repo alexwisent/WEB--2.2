@@ -31,7 +31,24 @@ a{ /* ссылки */
     text-decoration: none;
 }
 
+a:link{ /* ни разу не посещённая ссылка */
+    color: green;
+    text-decoration: none;
+}
+
+a:visited{ /* посещённая ссылка */
+    color: rgb(146, 107, 0);
+    text-decoration: none;
+}
+
 a:hover{ /* ссылки когда на них наводят курсор */
     color: red;
     text-decoration: underline;
+    text-shadow: 3px 2px 2px rgba(255, 255, 255, 0.8); /* тени */
+    background-color:rgb(75, 0, 161)
+}
+
+a:active{ /* ссылки когда на них нажимают */
+    color: rgba(0, 0, 0);
+    opacity: 0.3; /* прозрачность */
 }
