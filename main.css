@@ -25,3 +25,13 @@ header{
     font-family: Arial;
     margin: 0px;
 }
+
+a{ /* ссылки */
+    color: green;
+    text-decoration: none;
+}
+
+a:hover{ /* ссылки когда на них наводят курсор */
+    color: red;
+    text-decoration: underline;
+}
