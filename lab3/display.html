@@ -9,14 +9,43 @@
         <link rel="icon" href="../favicon-16x16.png">
 
         <style>
-            div {
-                margin: 20px; /* внешние отступы */
-                border: 1px solid; /* граница */
-                border-radius: 7px; /* сглаживание уголков */
-                padding: 7px; /* внутренние отступы */
-                width: 500px; /* ширина */
-                height: 200px;
-                overflow: auto;
+            h1 {
+                text-align: center;
+            }
+            
+            div.discount div {
+                display: none;
+            }
+            h1:hover+div {
+                display: block;
+            }
+
+            .discount {
+                width: 300px;
+                border: 1px solid;
+                display: inline-block; /* чтобы шли блоками друг за другом */
+                vertical-align: top; /* выравнивание по верхнему краю */
+            }
+            
+            .discount:nth-child(1) {
+                background: linear-gradient(to right, #ff9a9e, #fad0c4);
+                border-left: 5px solid #ff758c;
+            }
+            .discount:nth-child(2) {
+                background: linear-gradient(to right, #a18cd1, #fbc2eb);
+                border-left: 5px solid #8e44ad;
+            }
+            .discount:nth-child(3) {
+                background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+                border-left: 5px solid #3498db;
+            }
+            .discount:nth-child(4) {
+                background: linear-gradient(to right, #ffdde1, #ee9ca7);
+                border-left: 5px solid #e74c3c;
+            }
+            .discount:nth-child(5) {
+                background: linear-gradient(to right, #d4fc79, #96e6a1);
+                border-left: 5px solid #2ecc71;
             }
         </style>
 
@@ -28,9 +57,45 @@
         </header>
 
         <main>
-            Дисконт в теории игр. В теории игр, дисконт — текущая стоимость денежной единицы будущего периода, умноженная на вероятность повторения 
-            игры для игр с неизвестным числом повторений. Залоговый дисконт. Разница между реальной рыночной стоимостью залогового имущества 
-            и его залоговой стоимостью, используемой для определения суммы выдаваемого банком кредита.
+            <div class="discount">
+                <h1>Дисконт в теории игр.</h1>
+                <div>
+                    В теории игр, дисконт - текущая стоимость денежной единицы будущего периода, умноженная на вероятность повторения 
+                    игры для игр с неизвестным числом повторений.
+                </div>
+            </div>
+
+            <div class="discount">
+                <h1>Залоговый дисконт.</h1>
+                <div>
+                    Разница между реальной рыночной стоимостью залогового имущества 
+                    и его залоговой стоимостью, используемой для определения суммы выдаваемого банком кредита.
+                </div>
+            </div>
+
+            <div class="discount">
+                <h1>Дисконтная ставка.</h1>
+                <div>
+                    Процентная ставка, по которой центральный банк предоставляет кредиты коммерческим банкам, 
+                    влияя на уровень ликвидности в экономике.
+                </div>
+            </div>
+            
+            <div class="discount">
+                <h1>Дисконтирование.</h1>
+                <div>
+                    Процесс приведения будущих денежных потоков к их текущей стоимости с использованием 
+                    дисконтной ставки, применяемый в финансах и экономике.
+                </div>
+            </div>
+            
+            <div class="discount">
+                <h1>Дисконтная облигация.</h1>
+                <div>
+                    Облигация, которая продается ниже номинальной стоимости и не выплачивает процентные 
+                    платежи, а прибыль инвестора формируется за счет разницы между ценой покупки и номиналом при погашении.
+                </div>
+            </div>
         </main>
 
         <footer>
