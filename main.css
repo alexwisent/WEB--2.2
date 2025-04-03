@@ -6,7 +6,7 @@ body {
 }
 
 main{
-    background-color: lightgreen;
+    background-color: rgb(216, 255, 216);
     color: rgb(75, 0, 161);
     font-family: Arial;
     margin: 10px 20px 45px; /* делаем небольшой отступ */
