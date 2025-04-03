@@ -9,14 +9,18 @@ main{
     background-color: lightgreen;
     color: rgb(75, 0, 161);
     font-family: Arial;
-    margin: 0px;
+    margin: 10px 20px 45px; /* делаем небольшой отступ */
 }
 
 footer{
     background-color: lightyellow;
     color: rgb(109, 3, 43);
     font-family: Arial;
-    margin: 0px;
+    margin: 0px; /* отступы сверху и снизу - 0 */
+    position: fixed; /* фиксированное позиционирование для подвала */
+    bottom: 0; /* расстояние от нижнего края футера до нижнего края браузера должно быть нулевым */
+    right: 0; /* расстояние до правого края страницы */
+    left: 0; /* расстояние до левого края страницы */
 }
 
 header{
