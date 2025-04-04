@@ -9,7 +9,23 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <style></style>
+        <style>
+            div {
+                width: 300px;
+                height: 70px;
+                line-height: 70px;
+                text-align: center;
+                background-color: white;
+                border: 1px dotted darkgreen;
+                margin: 15px;
+            }
+            .position-relative {
+                position: relative;
+                left: -14px;
+                top: -45px;
+                z-index: -1;
+            }
+        </style>
     </head>     
 
     <body>
@@ -17,7 +33,18 @@
             НГТУ, ФБ, Лабораторная работа 4
         </header>
 
-        <main></main>
+        <main>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-relative">relative</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+        </main>
 
         <footer>
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
