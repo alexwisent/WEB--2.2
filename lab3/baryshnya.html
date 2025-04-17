@@ -11,37 +11,54 @@
 
         <style>
             h2 {
-                text-align: center;
-                cursor: pointer;
+                text-align: center; /* выравнивает заголовок по центру блока */
+                cursor: pointer; /* при наведении курсор превращается в руку */
             }
-            div.baryshna div {
-                display: none;
+            div.baryshna div { /* внутри любого div с классом .baryshna, скрыть все вложенные div */
+                display: none; /* полностью прячет элемент */
             }
-            h2:hover+div {
-                display: block;
+            h2:hover+div { /* Это селектор "соседний элемент" (+ div), он сработает только на ближайший div, следующий за h2 */
+                display: block; /* Когда курсор на h2, соседний div становится видимым */
             }
 
             .baryshna {
-                border: 2px solid #3498db; /* Синий цвет границы */
+                border: 2px solid #3498db;
                 padding: 30px;
                 border-radius: 15px;
                 margin: 20px;
                 box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-                background: #f0f8ff; /* Светлый фон */
-                transition: all 2s ease-in-out; /* Плавный переход между состоянием элемента */
-                /* transition: 2s; */
+                background: #f0f8ff;
                 overflow: hidden;
+                position: relative; /* Добавляем позиционирование */
+                transition-delay: 0s; /* Начальная задержка 0 секунд */
+                transition: all 2s ease-in-out; /* Плавный переход всех свойств за 2 сек с функцией плавности */
             }
 
-            .baryshna:hover { /* когда наводят курсор */
-                padding-left: 15px; /* Уменьшаем отступ слева */
-                padding-right: 15px; /* Уменьшаем отступ справа */
-                height: 300px; /* Увеличиваем высоту */
-                color: #fff; /* Цвет текста меняем на белый */
-                background: #2980b9; /* Темно-синий фон */
-                box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3); /* Усиливаем тень */
-                border-radius: 50px; /* Скругляем границы */
-                transition: 2s;
+            .baryshna .text {
+                display: none;
+                opacity: 0; /* Добавляем прозрачность */
+                transition: opacity 2s ease-in-out; /* Добавляем переход для прозрачности */
+                padding: 20px; /* Добавляем отступ для текста */
+            }
+
+            .baryshna:hover {
+                padding-left: 15px;
+                padding-right: 15px;
+                height: 300px;
+                color: #fff;
+                background: #2980b9;
+                box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+                border-radius: 50px;
+                transition-delay: 0s; /* Переход начинается сразу при наведении задержка 0s*/
+            }
+
+            .baryshna:not(:hover) {
+                transition-delay: 1s; /* При уходе курсора задержка 1s */
+            }
+
+            .baryshna:hover .text {
+                display: block;
+                opacity: 1; /* При наведении делаем текст видимым и непрозрачным */
             }
             
         </style>
