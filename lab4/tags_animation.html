@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Анчугова Софья Алексеевна. "Облако тегов"</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+
+        <style>
+            .tag-cloud {
+            position: relative; /* Родитель с относительным позиционированием */
+            height: 500px; /* Высота области облака */
+            width: 100%; /* Ширина на всю доступную ширину */
+            margin: 30px auto; /* Отступ сверху и снизу 30px, по центру по горизонтали */
+            background-color: #f0fff0; /* Светло-зелёный фон */
+            overflow: hidden; /* Прячем выходящие за границы теги */
+            }
+
+            .tag {
+            position: absolute; /* Позволяет разместить каждый тег в нужной точке */
+            font-family: Arial, sans-serif; /* Шрифт тегов */
+            font-weight: bold; /* Жирный текст */
+            padding: 5px 10px; /* Отступы внутри тега */
+            border-radius: 10px; /* Скруглённые углы */
+            transition: all 0.3s ease; /* Плавное изменение при наведении */
+            cursor: pointer; /* Курсор-указатель при наведении */
+            z-index: 1; /* Базовый уровень отображения */
+            }
+
+            .tag:hover {
+            transform: scale(1.5); /* Увеличение размера */
+            box-shadow: 0 0 10px rgba(0,0,0,0.4); /* Добавление тени */
+            z-index: 100; /* Поверх других тегов */
+            }
+
+            /* Индивидуальные стили для каждого тега: позиция, размер, цвет, поворот */
+            .tag1  { top: 50px;  left: 100px;  font-size: 18px; color: white; background: teal;        transform: rotate(-10deg);}
+            .tag2  { top: 100px; left: 200px;  font-size: 22px; color: white; background: darkorange;  transform: rotate(15deg);}
+            .tag3  { top: 150px; left: 300px;  font-size: 20px; color: white; background: crimson;     transform: rotate(-5deg);}
+            .tag4  { top: 200px; left: 150px;  font-size: 24px; color: white; background: purple;      transform: rotate(5deg);}
+            .tag5  { top: 250px; left: 250px;  font-size: 16px; color: white; background: seagreen;    transform: rotate(12deg);}
+            .tag6  { top: 300px; left: 50px;   font-size: 20px; color: white; background: tomato;      transform: rotate(-12deg);}
+            .tag7  { top: 100px; left: 400px;  font-size: 14px; color: white; background: navy;        transform: rotate(20deg);}
+            .tag8  { top: 350px; left: 350px;  font-size: 18px; color: white; background: steelblue;   transform: rotate(-15deg);}
+            .tag9  { top: 80px;  left: 500px;  font-size: 16px; color: white; background: olive;       transform: rotate(10deg);}
+            .tag10 { top: 180px; left: 450px;  font-size: 20px; color: white; background: darkgreen;   transform: rotate(-8deg);}
+            .tag11 { top: 220px; left: 550px;  font-size: 19px; color: white; background: darkred;     transform: rotate(7deg);}
+            .tag12 { top: 60px;  left: 600px;  font-size: 21px; color: white; background: indigo;      transform: rotate(-20deg);}
+            .tag13 { top: 270px; left: 500px;  font-size: 17px; color: white; background: darkblue;    transform: rotate(18deg);}
+            .tag14 { top: 130px; left: 50px;   font-size: 22px; color: white; background: goldenrod;   transform: rotate(-18deg);}
+            .tag15 { top: 330px; left: 250px;  font-size: 19px; color: white; background: coral;       transform: rotate(6deg);}
+
+        </style>
+    </head>     
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+        </header>
+
+        <main>
+            <div class="tag-cloud"> <!-- Контейнер для облака тегов -->
+                <span class="tag tag1">static</span>
+                <span class="tag tag2">relative</span>
+                <span class="tag tag3">absolute</span>
+                <span class="tag tag4">fixed</span>
+                <span class="tag tag5">sticky</span>
+                <span class="tag tag6">z-index</span>
+                <span class="tag tag7">top</span>
+                <span class="tag tag8">left</span>
+                <span class="tag tag9">right</span>
+                <span class="tag tag10">bottom</span>
+                <span class="tag tag11">transform</span>
+                <span class="tag tag12">translate</span>
+                <span class="tag tag13">rotate</span>
+                <span class="tag tag14">positioning</span>
+                <span class="tag tag15">centering</span>
+            </div>
+        </main>
+
+        <footer>
+            &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
+        </footer>
+        
+    </body>
+</html>
