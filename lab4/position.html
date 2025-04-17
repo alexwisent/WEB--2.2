@@ -24,11 +24,23 @@
                 margin: 15px;
             }
             .position-relative {
-                position: relative;
+                position: relative; /* позиционирование атносительное */
                 left: 150px;
                 top: -130px;
-                z-index: -1;
+                z-index: -1; /* уровень экрана на котором находится объект */
                 background-color: lightyellow; /* Сделаем фон отличным, чтобы было видно */
+            }
+            .position-relative:hover { /* при наведении курсора */
+                z-index: 10; /* уровень экрана на котором находится объект */
+            }
+            .position-absolute{
+                position: absolute; /* позиционирование абсолютное */
+                left: 300px; /* сдвиг в право */
+            }
+            .position-absolute:hover { /* при наведении курсора */
+                transform: scale(1.1); /* увеличивает блок на 10% */
+                background-color: gold; /* цвет желтый */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* тень */
             }
 
         </style>
@@ -45,7 +57,7 @@
             <div class="position-relative">relative</div>
             <div>static</div>
             <div>static</div>
-            <div>static</div>
+            <div class="position-absolute">absolute</div> 
             <div>static</div>
             <div>static</div>
             <div>static</div>
