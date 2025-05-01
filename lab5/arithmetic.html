@@ -107,6 +107,16 @@
                 let result = a ** b;
                 alert('Число ' + a + ' в степени ' + b + ' равно ' + result); 
             }
+            function changeOutput(buttonNum, backgroundColor, textColor, borderStyle, borderRadius, borderWidth, borderColor) {
+                let output = document.getElementById('output');
+                output.innerHTML = 'Нажата кнопка ' + buttonNum; /* свойство innerHTML - lля доступа к внутреннему контенту тега */
+                output.style.backgroundColor = backgroundColor; // цвет фона
+                output.style.color = textColor; // цвет текста
+                output.style.borderStyle = borderStyle;     // тип рамки: solid, dashed, dotted и т.д.
+                output.style.borderRadius = borderRadius;   // скругление углов: например, '10px'
+                output.style.borderWidth = borderWidth;     // толщина рамки: например, '2px'
+                output.style.borderColor = borderColor;     // цвет рамки
+            }
         </script>
 
         <style>
@@ -127,7 +137,12 @@
                 padding: 10px; /* внутренний отступ */
                 border-radius: 10px; /* скругление углов */
                 border: 2px solid rgb(0, 0, 0); /* рамка блока: толщина, стиль, цвет рамки */      
-            }            
+            }        
+            #output { /* Для id перед селектором должен стоять символ решётки "#" ("хеш") */
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+            }    
         </style>
     </head>     
 
@@ -146,8 +161,16 @@
             <div class="message" onclick="showDiv()">Найти отношение чисел</div>
             <div class="message" onclick="showExp()">Найти число в степени</div>
 
-
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+
+            <div>
+                <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', 'solid', '10px', '2px', 'black')">
+                <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', 'dashed', '8px', '5px', 'orange')">
+                <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'grey', 'pink', 'dotted', '15px', '2px', 'yellow')">
+                <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'orange', 'black', 'solid', '5px', '3px', 'green')">
+            </div>
+
+            <div id="output"></div>
         </main>
 
         <footer ondblclick="welcome()"> <!-- обработчик ondblclick - двойное нжатие -->
