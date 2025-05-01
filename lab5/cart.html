@@ -9,9 +9,76 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <script>
+            function cost() {
+                let input1 = document.getElementById('number1'); 
+                let input2 = document.getElementById('number2');
+                let input3 = document.getElementById('number3'); 
+                let input4 = document.getElementById('number4');
+                let input5 = document.getElementById('number5');
 
-        <style></style>
+                let a = parseInt(input1.value) || 0; 
+                let b = parseInt(input2.value) || 0;
+                let c = parseInt(input3.value) || 0;
+                let d = parseInt(input4.value) || 0;
+                let e = parseInt(input5.value) || 0;
+
+                let result = a*100 + b*80 + c*150 + d*300 + e*500;
+                output.innerHTML = 'Общая цена: ' + result + 'р'                
+            }
+            function clearFields() {
+                document.getElementById('number1').value = '';
+                document.getElementById('number2').value = '';
+                document.getElementById('number3').value = '';
+                document.getElementById('number4').value = '';
+                document.getElementById('number5').value = '';
+                document.getElementById('output').innerHTML = '';
+            }
+            window.onload = function () { // запрещает вводить отрицательыне и е
+                document.querySelectorAll('input[type="number"]').forEach(input => {
+                    input.addEventListener('input', () => {
+                        if (input.value < 0) {
+                            input.value = 0;
+                        }
+                    });
+
+                    input.addEventListener('keydown', (e) => {
+                        if (e.key === '-' || e.key === 'e') {
+                            e.preventDefault();
+                        }
+                    });
+                });
+            };
+        </script>
+
+        <style>
+            .korzina{
+                text-align: left; /* выравнивает текст внутри блока по центру*/
+                display: inline-block; /* блоки в строке */
+                width: auto; /* длина */
+                height: auto; /* высота */
+                background: rgb(198, 211, 255); /* фон блока */
+                margin: 15px; /* внешний отступ */
+                padding: 20px; /* внутренний отступ */
+                border-radius: 8px; /* скругление углов */
+                border: 2px solid rgb(0, 0, 0); /* рамка блока: толщина, стиль, цвет рамки */
+            }
+            .zagolovok{
+                color: brown;
+                font-weight: bold; /* текст жирным */
+                font-size: 24px;   /* размер текста */
+                margin-bottom: 20px; /* нижний отступ */
+            }
+            .viv{
+                color: brown;
+                margin-top: 10px; /* верний отступ */
+                margin-bottom: 2px; /* нижний отступ */
+            }
+            .button{
+                margin-top: 10px; /* верний отступ */
+                margin-bottom: 5px; /* нижний отступ */
+            }
+        </style>
     </head>     
 
     <body>
@@ -19,7 +86,33 @@
             НГТУ, ФБ, Лабораторная работа 5
         </header>
 
-        <main> </main>
+        <main>
+            <div class="korzina">
+                <div class="zagolovok">Корзина товаров</div>
+
+                <div class="viv"> Яблоки (100р/шт):</div>
+                <input type="number" placeholder="сколько яблок?" id="number1" min="0"><br>
+
+                <div class="viv"> Груши (80/шт):</div>
+                <input type="number" placeholder="сколько груш?" id="number2" min="0"><br>
+
+                <div class="viv"> Апельсины (150/шт):</div>
+                <input type="number" placeholder="сколько апельсинов?" id="number3" min="0"><br>
+
+                <div class="viv"> Дыни (300/шт):</div>
+                <input type="number" placeholder="сколько дынь?" id="number4" min="0"><br>
+
+                <div class="viv"> Арбузы (500/шт):</div>
+                <input type="number" placeholder="сколько арбузов?" id="number5" min="0"><br>
+
+                <div class="button">
+                    <input type="button" value="Рассчитать" onclick="cost()">
+                    <input type="button" value="Очистить" onclick="clearFields()">
+                </div>
+
+                <div id="output"></div>
+            </div>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
