@@ -10,7 +10,7 @@
         <link rel="icon" href="../favicon-16x16.png">
 
         <script>
-            function cost() {
+            function cost() { // расчет суммы корзины
                 let input1 = document.getElementById('number1'); 
                 let input2 = document.getElementById('number2');
                 let input3 = document.getElementById('number3'); 
@@ -26,7 +26,7 @@
                 let result = a*100 + b*80 + c*150 + d*300 + e*500;
                 output.innerHTML = 'Общая цена: ' + result + 'р'                
             }
-            function clearFields() {
+            function clearFields() { // очистка по кнопке 
                 document.getElementById('number1').value = '';
                 document.getElementById('number2').value = '';
                 document.getElementById('number3').value = '';
