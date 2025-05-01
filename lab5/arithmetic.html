@@ -10,7 +10,7 @@
         <link rel="icon" href="../favicon-16x16.png">
 
         <script>
-            function showSun() {
+            function showSum() {
                 let inputA = document.getElementById('numberA') /* берем в переменную то, что мы записали на веб странице в 'numberA' */
                 let inputB = document.getElementById('numberB')
 
@@ -27,6 +27,7 @@
                 let hi = 'Приветствую вас на моей странице!\nЧипи-чипи чапа-чапа';
                 alert(hi);
             }
+
         </script>
 
         <style>
@@ -60,7 +61,7 @@
             <label>Первое число: <input type="number" value="5154" id="numberA"></label><br> <!-- поле для ввода числа; label - чтобы при нажатии на текст поле для вовода тоже становилось акивным -->
             <label>Второе число: <input type="number" value="7891" id="numberB"></label><br> <!-- value - чтобы при загрузке страницы сразу были вписаны наши значения -->
 
-            <div class="message" onclick="showSun()">Найти сумму чисел</div>
+            <div class="message" onclick="showSum()">Найти сумму чисел</div>
 
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
