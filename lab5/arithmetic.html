@@ -11,8 +11,11 @@
 
         <script>
             function showSun() {
-                let a = 5154; /* создание переменной a */
-                let b = 7891;
+                let inputA = document.getElementById('numberA') /* берем в переменную то, что мы записали на веб странице в 'numberA' */
+                let inputB = document.getElementById('numberB')
+
+                let a = parseInt(inputA.value); /* parseInt - читаем значение чиселки в строке значений тега inputA */
+                let b = parseInt(inputB.value);
                 let result = a + b;
                 alert('Сумма ' + a + ' и ' + b + ' равна ' + result); /* вывод функции */
             }
@@ -54,7 +57,11 @@
         </header>
 
         <main>
-            <div class="message" onclick="showSun()">Сколько будет 5154+7891?</div>
+            <label>Первое число: <input type="number" value="5154" id="numberA"></label><br> <!-- поле для ввода числа; label - чтобы при нажатии на текст поле для вовода тоже становилось акивным -->
+            <label>Второе число: <input type="number" value="7891" id="numberB"></label><br> <!-- value - чтобы при загрузке страницы сразу были вписаны наши значения -->
+
+            <div class="message" onclick="showSun()">Найти сумму чисел</div>
+
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
 
