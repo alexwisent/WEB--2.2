@@ -62,7 +62,7 @@
                 }
 
                 if(isNaN(a)) { /* если значение a пустое */
-                    alert('Введите числовое знчение в певрое поле');
+                    alert('Введите числовое знчение в первое поле');
                     inputA.focus();
                     return;
                 }
@@ -78,6 +78,34 @@
 
                 let result = a / b;
                 alert('Отношение ' + a + ' и ' + b + ' равно ' + result); 
+            }
+            function showExp() { /* возведение в степень */
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+
+                if((a == 0) && (b == 0)) { /* если значения a и b пустые */
+                    alert('Оба числа равны 0, введите другое значение в одно из полей');
+                    inputA.focus();
+                    return;
+                }
+
+                if(isNaN(a)) { /* если значение a пустое */
+                    alert('Введите числовое знчение в первое поле');
+                    inputA.focus();
+                    return;
+                }
+
+                if(isNaN(b)) { /* если значение a пустое */
+                    alert('Введите числовое знчение во второе поле');
+                    inputB.focus();
+                    return;
+                }
+
+                let result = a ** b;
+                alert('Число ' + a + ' в степени ' + b + ' равно ' + result); 
             }
         </script>
 
@@ -116,6 +144,7 @@
             <div class="message" onclick="showDifference()">Найти разность чисел</div>
             <div class="message" onclick="showProduct()">Найти произведение чисел</div>
             <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+            <div class="message" onclick="showExp()">Найти число в степени</div>
 
 
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
