@@ -50,7 +50,11 @@
                 <span id="grayscaleOutput">0%</span>
             </div>
 
-            
+            <div>
+                Фильтр hue-rotate:
+                <input type="range" min="0" max="360" value="0" onchange="updateFilters()" id="hueRotateValue">
+                <span id="hueRotateOutput">0°</span>
+            </div>
 
             <div><img src="sea-mountain.webp" id="blurImage"></div> <!-- onchange — этот обработчик срабатывает сразу же при любом изменении в поле ввода -->
         </main>
