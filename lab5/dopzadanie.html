@@ -9,9 +9,29 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif; /* Устанавливаем шрифт */
+                padding: 20px; /* Отступ вокруг содержимого страницы */
+            }
 
-        <style></style>
+            img {
+                max-width: 100%; /* Изображение будет адаптироваться под ширину контейнера */
+                transition: filter 0.2s ease; /* Плавное применение фильтров */
+            }
+
+            #info {
+                margin-top: 10px; /* Отступ сверху */
+                font-size: 18px; /* Размер текста */
+            }
+
+            #help {
+                margin-top: 30px; /* Отступ сверху */
+                background: #eef; /* Светло-синий фон */
+                padding: 10px; /* Внутренние отступы */
+                border: 1px solid #99c; /* Синяя рамка */
+            }
+        </style>
     </head>     
 
     <body>
@@ -19,7 +39,63 @@
             НГТУ, ФБ, Лабораторная работа 5
         </header>
 
-        <main></main>
+        <main>            
+            <h1>Фильтры по движению мыши</h1>
+
+            <img src="sea-mountain.webp" id="image" onmousemove="applyFilter(event)" onmouseleave="clearFilter()"> <!-- Изображение с обработчиками событий при движении и выходе мыши -->
+
+            <div id="info">Фильтр: blur(0px)</div> <!-- Блок, в который будет выводиться информация о текущем фильтре -->
+
+            <div id="help">
+                <strong>Как работает:</strong><br>
+                - Наведите мышь на картинку: включится фильтр blur, сила зависит от положения мыши по горизонтали.<br>
+                - Нажмите клавиши во время наведения на изображение:<br>
+                -- <b>Ctrl</b>: добавляется grayscale<br>
+                -- <b>Alt</b>: добавляется sepia<br>
+                -- <b>Shift</b>: добавляется invert<br>
+            </div>
+
+            <script>
+                function applyFilter(event) { // Функция, вызываемая при движении мыши по изображению
+                    const img = event.target; // Сохраняем ссылку на изображение, по которому движется мышь
+                    const rect = img.getBoundingClientRect(); // Получаем координаты и размеры изображения
+                    const mouseX = event.clientX - rect.left; // Определяем X-координату мыши относительно изображения
+                    const width = rect.width; // Получаем ширину изображения
+
+                    const ratio = mouseX / width;// Вычисляем степень фильтра от 0 до 1
+
+                    const blurValue = (ratio * 10).toFixed(1); // Основной фильтр — blur от 0 до 10 пикселей
+                    
+
+                    // Дополнительные фильтры по клавишам
+                    let extraFilters = ''; // Переменная для хранения дополнительных фильтров
+                    let infoText = `Фильтр: blur(${blurValue}px)`; // Начальное описание текущего фильтра
+
+                    if (event.ctrlKey) {
+                        extraFilters += ` grayscale(${Math.round(ratio * 100)}%)`;
+                        infoText += `<br>Дополнительно: grayscale(${Math.round(ratio * 100)}%)`;
+                    }
+                    if (event.altKey) {
+                        extraFilters += ` sepia(${Math.round(ratio * 100)}%)`;
+                        infoText += `<br>Дополнительно: sepia(${Math.round(ratio * 100)}%)`;
+                    }
+                    if (event.shiftKey) {
+                        extraFilters += ` invert(${Math.round(ratio * 100)}%)`;
+                        infoText += `<br>Дополнительно: invert(${Math.round(ratio * 100)}%)`;
+                    }
+
+                    const filterString = `blur(${blurValue}px)` + extraFilters;
+                    img.style.filter = filterString;
+                    document.getElementById('info').innerHTML = infoText;
+                }
+
+                function clearFilter() { // Функция, вызываемая при выходе мыши за пределы изображения
+                    const img = document.getElementById('image'); // Получаем изображение
+                    img.style.filter = 'none'; // Убираем фильтры
+                    document.getElementById('info').innerText = 'Фильтр: нет'; // Обновляем текст
+                }
+            </script>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
