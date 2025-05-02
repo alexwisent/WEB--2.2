@@ -38,6 +38,14 @@
                 <span id="brightnessOutput">100%</span>
             </div>
 
+            <div>
+                Фильтр contrast:
+                <input type="range" min="0" max="500" value="100" onchange="updateFilters()" id="contrastValue">
+                <span id="contrastOutput">100%</span>
+            </div>
+
+            
+
             <div><img src="sea-mountain.webp" id="blurImage"></div> <!-- onchange — этот обработчик срабатывает сразу же при любом изменении в поле ввода -->
         </main>
 
