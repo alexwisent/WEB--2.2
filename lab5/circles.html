@@ -3,26 +3,96 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Анчугова Софья Алексеевна. "Корзина"</title>
+        <title>Анчугова Софья Алексеевна. "Круги"</title>
         <link rel="stylesheet" href="../main.css">
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
-
-        <style></style>
-    </head>     
+        <style>
+            body {
+                position: relative; /* Позволяет позиционировать вложенные элементы абсолютно */
+                height: 100vh; /* Высота окна браузера */
+                margin: 0; /* Убираем отступы по умолчанию */
+                overflow: hidden; /* Обрезаем содержимое, выходящее за границы */
+            }
+            .circle {
+                position: absolute; /* Абсолютное позиционирование на странице */
+                width: 100px; /* Ширина круга */
+                height: 100px; /* Высота круга */
+                border-radius: 50%; /* Скругление углов до круга */
+                display: flex; /* Используем Flexbox для центрирования текста */
+                justify-content: center; /* Центрируем по горизонтали */
+                align-items: center; /* Центрируем по вертикали */
+                color: white; /* Цвет текста */
+                font-size: 20px; /* Размер шрифта */
+                font-weight: bold; /* Жирный текст */
+                transition: transform 1s ease, opacity 1s ease; /* Плавное исчезновение */
+            }
+            .hidden {
+                opacity: 0; /* Прозрачность 0 */
+                transform: scale(0); /* Уменьшение размера до нуля */
+            }
+            #resetButton {
+                position: absolute; /* Абсолютное позиционирование */
+                bottom: 20px; /* Отступ снизу */
+                left: 50%; /* Центрируем по горизонтали */
+                transform: translateX(-50%); /* Смещаем кнопку назад на половину её ширины */
+                padding: 10px 20px; /* Внутренние отступы */
+                font-size: 16px; /* Размер шрифта */
+                cursor: pointer; /* Курсор в виде руки */
+                background-color: #4CAF50; /* Цвет фона */
+                color: black; /* Цвет текста */
+                border: none; /* Без рамки */
+                border-radius: 5px; /* Скругление углов */
+            }            
+            #resetButton:hover {
+                background-color: #45a049; /* Цвет фона при наведении */
+            }
+        </style>
+    </head>      
 
     <body>
         <header>
             НГТУ, ФБ, Лабораторная работа 5
         </header>
 
-        <main></main>
+        <main>
+            <div class="circle" style="top: 50px; left: 150px; background-color: #FF5733;">1</div>
+            <div class="circle" style="top: 200px; left: 300px; background-color: #33FF57;">2</div>
+            <div class="circle" style="top: 350px; left: 50px; background-color: #3357FF;">3</div>
+            <div class="circle" style="top: 100px; left: 500px; background-color: #FF33A1;">4</div>
+            <div class="circle" style="top: 400px; left: 600px; background-color: #FF8C33;">5</div>
+            <div class="circle" style="top: 150px; left: 700px; background-color: #8C33FF;">6</div>
+            <div class="circle" style="top: 250px; left: 50px; background-color: #FFEC33;">7</div>
+            <div class="circle" style="top: 300px; left: 250px; background-color: #33FFEC;">8</div>
+            <div class="circle" style="top: 450px; left: 400px; background-color: #FF5733;">9</div>
+            <div class="circle" style="top: 300px; left: 550px; background-color: #FF33FF;">10</div>
 
-        <footer > 
+            <button id="resetButton">Восстановить круги</button> <!-- Кнопка для восстановления видимости и размера -->
+        </main>
+
+        <footer> 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
-        </footer>        
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => { // Ждём, пока весь DOM загрузится
+                const circles = document.querySelectorAll('.circle'); // Получаем все элементы с классом .circle
+                const resetButton = document.getElementById('resetButton'); // Получаем кнопку восстановления
+                
+                circles.forEach(circle => { // Добавляем обработчик событий на каждый круг
+                    circle.addEventListener('click', () => {                        
+                        circle.classList.add('hidden'); // Добавляем класс hidden при клике, который инициирует анимацию исчезновения
+                    });
+                });
+
+                resetButton.addEventListener('click', () => { // Добавляем обработчик события на кнопку для восстановления кругов
+                    circles.forEach(circle => {                        
+                        circle.classList.remove('hidden'); // Убираем класс hidden, чтобы вернуть круги в исходное состояние
+                    });
+                });
+            });
+        </script>        
     </body>
 </html>
