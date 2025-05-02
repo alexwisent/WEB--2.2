@@ -10,10 +10,29 @@
         <link rel="icon" href="../favicon-16x16.png">
 
         <script>
-            function blurChange() {
-                let value = document.getElementById('blurValue').value + 'px';
-                document.getElementById('blurOutput').innerText = value;
-                document.getElementById('blurImage').style.filter = 'blur('+ value + ')';
+            function updateFilters() { // ф-ия вызываетя при изменеии любого из ползунков
+                const blur = document.getElementById('blurValue').value + 'px'; // блюр 
+                const brightness = document.getElementById('brightnessValue').value + '%'; // яркость
+                const contrast = document.getElementById('contrastValue').value + '%'; // контроаст
+                const grayscale = document.getElementById('grayscaleValue').value + '%'; // оттенки серого
+                const hueRotate = document.getElementById('hueRotateValue').value + 'deg'; // оттенок цвета
+                const invert = document.getElementById('invertValue').value + '%'; // инвертирование цвета
+                const saturate = document.getElementById('saturateValue').value + '%'; // насыщенность цвета
+                const sepia = document.getElementById('sepiaValue').value + '%'; // сепия
+
+                // Обновляем текст рядом с ползунком, чтобы пользователь видел выбранное значение
+                document.getElementById('blurOutput').innerText = blur;
+                document.getElementById('brightnessOutput').innerText = brightness;
+                document.getElementById('contrastOutput').innerText = contrast;
+                document.getElementById('grayscaleOutput').innerText = grayscale;
+                document.getElementById('hueRotateOutput').innerText = hueRotate;
+                document.getElementById('invertOutput').innerText = invert;
+                document.getElementById('saturateOutput').innerText = saturate;
+                document.getElementById('sepiaOutput').innerText = sepia;
+
+                // Создаётся строка со всеми фильтрами, объединёнными в одну. Она будет применена к изображению через CSS-свойство filter
+                const filterString = `blur(${blur}) brightness(${brightness}) contrast(${contrast}) grayscale(${grayscale}) hue-rotate(${hueRotate}) invert(${invert}) saturate(${saturate}) sepia(${sepia})`;
+                document.getElementById('blurImage').style.filter = filterString; // Применяем фильтры к изображению с id="blurImage", задавая CSS-свойство filter.
             }
         </script>
 
