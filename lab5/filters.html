@@ -56,6 +56,12 @@
                 <span id="hueRotateOutput">0°</span>
             </div>
 
+            <div>
+                Фильтр invert:
+                <input type="range" min="0" max="100" value="0" onchange="updateFilters()" id="invertValue">
+                <span id="invertOutput">0%</span>
+            </div>
+
             <div><img src="sea-mountain.webp" id="blurImage"></div> <!-- onchange — этот обработчик срабатывает сразу же при любом изменении в поле ввода -->
         </main>
 
