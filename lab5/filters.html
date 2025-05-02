@@ -31,6 +31,13 @@
                 <input type="range" min="0" max="20" value="0" onchange="blurChange() "id="blurValue">
                 <span id="blurOutput"></span>
             </div>
+
+            <div>
+                Фильтр brightness:
+                <input type="range" min="0" max="500" value="100" onchange="updateFilters()" id="brightnessValue">
+                <span id="brightnessOutput">100%</span>
+            </div>
+
             <div><img src="sea-mountain.webp" id="blurImage"></div> <!-- onchange — этот обработчик срабатывает сразу же при любом изменении в поле ввода -->
         </main>
 
