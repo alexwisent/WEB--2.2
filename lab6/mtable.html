@@ -11,42 +11,67 @@
 
         <script>
             function showMutipleTable() {
+                let inputA = document.getElementById('numberA'); // берем в переменную то, что мы записали на веб странице в 'numberA'
+                let inputB = document.getElementById('numberB');
+                let inputC = document.getElementById('numberC');
+
+                let a = parseInt(inputA.value); // parseInt - читаем значение чиселки в строке значений тега inputA
+                let b = parseInt(inputB.value);
+                let c = parseInt(inputC.value);
+
+                if (b > c) {
+                    alert('Введите значение меньше ' + c);
+                    inputB.focus(); /* направлем пользователя сразу на нужное поля для исправления ошибки */
+                    inputB.select(); /* выделяем значение поля чтоыб пользователь сразу мог ввести другое значение */
+                    return;
+                }
+                
                 let tb1 = document.getElementById('mtable'); // код ищет блок с id="mtable"
                 tb1.innerHTML = '<h1>Таблица умножения</h1>'; // и пишет туда «Таблица умножения»
-                for(i = 1; i <= 10; i++) {
+                for(i = b; i <= c; i++) {
                     //  let s = '<div>' + i + ' * 7 = ' + (i*7) + '</div>';  - то же самое что и:
-                    let s = `<div>${i} * 7 = ${i*7}</div>`; // вставляем сами значения переменных без конкатенации
-                     tb1.innerHTML += s;
+                    let s = `<div>${i} * ${a} = ${i * a}</div>`;// вставляем сами значения переменных без конкатенации
+                    tb1.innerHTML += s;
                 }
             }            
         </script>
 
         <style>
             body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
+                font-family: Arial, sans-serif; /* Устанавливаем шрифт для всего документа: сначала Arial, если его нет — любой без засечек */
+                margin: 20px; /* Отступ от краёв окна браузера со всех сторон */
             }
             #mtable {
-                max-width: 300px;
-                margin: 20px;
-                padding: 20px;
-                background-color: #e0b685;
-                border: 2px solid #ccc;
-                border-radius: 10px;
-                box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-                font-family: 'Courier New', monospace;
+                max-width: 400px; /* Максимальная ширина блока — 300 пикселей */
+                margin: 20px; /* Отступ снаружи блока со всех сторон */
+                padding: 20px; /* Внутренние отступы внутри блока */
+                background-color: #e0b685; /* Цвет фона блока — светло-коричневый */
+                border: 2px solid #ccc; /* Граница толщиной 2px и серого цвета */
+                border-radius: 10px; /* Скругление углов блока на 10px */
+                box-shadow: 2px 2px 10px rgba(0,0,0,0.1); /* Тень от блока: смещение на 2px по X и Y, размытие 10px, полупрозрачный черный */
+                font-family: 'Courier New', monospace; /* Шрифт внутри таблицы — моноширинный (Courier New или любой похожий) */
             }
             #mtable h1 {
-                text-align: center;
-                font-size: 24px;
-                margin-bottom: 15px;
-                color: #333;
+                text-align: center; /* Заголовок выравнивается по центру */
+                font-size: 24px; /* Размер шрифта заголовка */
+                margin-bottom: 15px; /* Отступ снизу от заголовка */
+                color: #333; /* Цвет текста — тёмно-серый */
             }
             #mtable div {
-                padding: 5px 0;
-                text-align: center;
-                font-size: 18px;
-                color: #222;
+                padding: 5px 0; /* Внутренний отступ сверху и снизу по 5px, по бокам — 0 */
+                text-align: center; /* Центрируем текст внутри строки таблицы */
+                font-size: 18px; /* Размер шрифта в строках таблицы */
+                color: #222; /* Цвет текста — тёмно-серый (немного темнее чем у заголовка) */
+            }
+            .button-tup {
+                max-width: 400px; /* Максимальная ширина блока — 300 пикселей */
+                margin: 20px; /* Отступ снаружи блока со всех сторон */
+                padding: 20px; /* Внутренние отступы внутри блока */
+                background-color: #e0b685; /* Цвет фона блока — светло-коричневый */
+                border: 2px solid #ccc; /* Граница толщиной 2px и серого цвета */
+                border-radius: 10px; /* Скругление углов блока на 10px */
+                box-shadow: 2px 2px 10px rgba(0,0,0,0.1); /* Тень от блока: смещение на 2px по X и Y, размытие 10px, полупрозрачный черный */
+                font-family: 'Courier New', monospace; /* Шрифт внутри таблицы — моноширинный (Courier New или любой похожий) */
             }
         </style>
     </head>     
@@ -58,6 +83,14 @@
 
         <main>
             <div id="mtable"></div>
+
+            <div class="button-tup">
+                <label>Умножить на: <input type="number" value="7" id="numberA"></label><br>
+                <label>Начать с: <input type="number" value="1" id="numberB"></label><br>
+                <label>Закончить на: <input type="number" value="10" id="numberC"></label><br>
+                
+                <input type="button" value="Таблица" onclick="showMutipleTable()">              
+            </div>
         </main>
 
         <footer > 
