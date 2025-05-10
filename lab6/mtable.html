@@ -9,7 +9,13 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <script>
+            function showMutipleTable() {
+                let tb1 = document.getElementById('mtable'); // код ищет блок с id="mtable"
+                tb1.innerHTML = '<h1>Таблица умножения</h1>'; // и пишет туда «Таблица умножения»
+            }
+            showMutipleTable(); // вызываем функцию
+        </script>
 
         <style></style>
     </head>     
@@ -19,7 +25,9 @@
             НГТУ, ФБ, Лабораторная работа 6
         </header>
 
-        <main></main>
+        <main>
+            <div id="mtable"></div>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
