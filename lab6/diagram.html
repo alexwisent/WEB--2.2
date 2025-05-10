@@ -9,17 +9,62 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script> </script>
+        <script>
+            function showDiagram() {
+                let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43]; // значения столбцов
+                let color = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta', 'lime', 'brown', 'gold']; // массив цветов
+                let bars = document.getElementsByClassName('bar'); // получаем все элементы с классом bar
+                const diagWidth = document.getElementById('diag').clientWidth; // получаем ширину контейнера
+                const maxData = Math.max(...data); // максимальное значение из массива
+                const k = diagWidth / maxData * 0.9; // коэффициент масштабирования
 
-        <style></style>
+                for (let i = 0; i < data.length; i++) {
+                    bars[i].style.width = (k * data[i]) + 'px'; // ширина блока в зависимости от значения
+                    bars[i].style.backgroundColor = color[i]; // цвет из массива
+                }
+            }
+        </script>
+
+        <style>
+            #diag {
+                display: flex;
+                flex-direction: column; /* Размещаем блоки вертикально (в столбик) */
+                align-items: flex-start; /* Выравниваем по левому краю */
+                gap: 2px; /* Минимальный отступ между блоками */
+                background-color: white; /* Белый фон */
+                border: 1px solid #000000; /* Граница толщиной 2px и серого цвета */
+                margin: 20px; /* задаем внешний отступ */
+                max-width: 300px; /* Ширина всей диаграммы */
+            }
+
+            .bar {
+                background-color: #007bff; /* Синий цвет */
+                width: 25px; /* Длина блока */
+                height: 25px; /* Высота каждого блока */
+                border-radius: 0; /* Оставляем острые углы */
+            }
+        </style>
     </head>     
 
-    <body>
+    <body onload="showDiagram()">
         <header>
             НГТУ, ФБ, Лабораторная работа 6
         </header>
 
-        <main></main>
+        <main>
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
