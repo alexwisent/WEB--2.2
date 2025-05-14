@@ -49,7 +49,7 @@
                 border-radius: 8px; /* Скругление углов кнопки */
                 background: #2196f3; /* Синий фон кнопки */
                 color: white; /* Белый цвет текста */
-                    cursor: pointer; /* Курсор в виде руки при наведении */
+                cursor: pointer; /* Курсор в виде руки при наведении */
                 box-shadow: 2px 2px 6px rgba(0,0,0,0.2); /* Лёгкая тень под кнопкой */
                 transition: box-shadow 0.3s ease; /* Плавное изменение тени при наведении */
                 position: relative; /* Задаём относительное позиционирование (может пригодиться для псевдоэлементов или позиционирования внутри) */
@@ -62,15 +62,6 @@
             button:active {
                 box-shadow: none; /* При нажатии — тень убирается */
             }
-
-            button:active + .progress-bar .fill {/* Прогресс при удержании кнопки */
-                animation: grow 5s linear forwards; /* Анимация длится 5 секунд, линейно, и сохраняет финальное состояние */
-            }
-
-            @keyframes grow { /* Эта анимация используется, чтобы плавно заполнить прогресс-бар от пустого до полного. */
-                from { width: 0%; } /* Начало анимации: ширина 0% */
-                to { width: 100%; } /* Конец анимации: ширина 100% */
-            }
         </style>
     </head>     
 
@@ -81,10 +72,10 @@
 
         <main>
             <div class="container">
-                <button>Нажмите и удерживайте</button>
                 <div class="progress-bar">
                     <div class="fill"></div>
                 </div>
+                <button id="holdButton">Нажмите и удерживайте</button>
             </div>
         </main>
 
@@ -92,5 +83,26 @@
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
         </footer>
         
+        <script>
+            const button = document.getElementById('holdButton');
+            const fill = document.querySelector('.fill');
+            let timer;
+
+            button.addEventListener('mousedown', () => {
+                fill.style.transition = 'width 5s linear';
+                fill.style.width = '100%';
+            });
+
+            button.addEventListener('mouseup', () => {
+                fill.style.transition = 'width 0.2s ease';
+                fill.style.width = '0%';
+            });
+
+            button.addEventListener('mouseleave', () => {
+                fill.style.transition = 'width 0.2s ease';
+                fill.style.width = '0%';
+            });
+        </script>
+
     </body>
 </html>
