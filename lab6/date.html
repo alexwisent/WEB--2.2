@@ -9,17 +9,25 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <script>
+            function showDate() { //выводит текущую дату внутрь тега id="current-date"
+                let out = document.getElementById('current-date');
+                let today = new Date(); // определяем текущую дату с помощью встроенного в JavaScript глобального объекта Date
+                out.innerHTML = today.toLocaleString('ru-RU'); // метод toLocaleString преобразует строку с датой-временем в текущую локаль
+            }
+        </script>
 
         <style></style>
     </head>     
 
-    <body>
+    <body onload="showDate()">
         <header>
             НГТУ, ФБ, Лабораторная работа 6
         </header>
 
-        <main></main>
+        <main>
+            <div id="current-date"></div>
+        </main>
 
         <footer> 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
