@@ -11,21 +11,79 @@
         <script src="book.js"></script> <!-- Подгрузка списка книг  -->
 
         <script>
-            function showBooks() {
-                const bookList = document.getElementById('bookList'); // Получение места для вывода книг
-                for (let i = 0; i < books.length; i++) { // переюираем массив с кнгами
-                    bookList.innerHTML += `
-                        <div>
-                            <b>${ books[i].author }.</b>
-                            <i>${ books[i].name }</i>
-                            &mdash; ${ books[i].publicationYear }
-                        </div>
-                    `
-                } 
+            function showBooks() { // Функция для отображения списка книг
+                const bookList = document.getElementById('bookList'); // Получаем контейнер для книг
+                for (let i = 0; i < books.length; i++) { // Цикл по всем книгам
+                    const book = books[i];
+                    const bookDiv = document.createElement('div'); // Создаем div для книги
+                    bookDiv.className = 'book'; // Присваиваем класс
+                    
+                    if (!book.available) { // Если книги нет в наличии — делаем тусклой
+                        bookDiv.classList.add('unavailable'); // Добавляем класс для серого цвета
+                    };
+
+                    // Формируем HTML-содержимое карточки книги
+                    bookDiv.innerHTML = `
+                        <b>${book.author}</b>. 
+                        <i>${book.name}</i>
+                        &mdash; ${book.publicationYear}<br>
+                        <span class="price">Цена: ${book.price}₽</span>
+                        ${book.bestseller ? `<sup class="bestseller">Бестселлер!</sup>` : ''}
+                        ${!book.available ? `<div class="note">Нет в наличии</div>` : ''}
+                    `;
+
+                    bookList.appendChild(bookDiv); // Добавляем книгу в список
+                }
             }
         </script>
 
-        <style></style>
+        <style>
+            #bookList { /* Стили для контейнера списка книг */
+                display: flex; /* Flex-контейнер */
+                flex-direction: column; /* Вертикальное расположение */
+                gap: 15px; /* Расстояние между элементами */
+                padding: 15px; /* Внутренние отступы */
+            }
+
+            .book {
+                border: 1px solid #ccc; /* Граница */
+                padding: 10px 15px; /* Отступы */
+                border-radius: 10px; /* Скругление углов */
+                background-color: #fefefe; /* Цвет фона */
+                box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Тень */
+                transition: background-color 0.3s; /* Анимация при наведении */
+            }
+
+            .book:hover {
+                background-color: #f0f8ff; /* Цвет при наведении */
+            }
+
+            .unavailable { /* Стиль для недоступных книг */
+                opacity: 0.5; /* Полупрозрачность */
+                color: #777; /* Серый цвет */
+            }
+
+            .bestseller { /* Стиль для бестселлеров */
+                background-color: yellow; /* Желтый фон */
+                color: red; /* Красный текст */
+                border-radius: 5px; /* Скругление */
+                padding: 2px 6px; /* Отступы */
+                font-style: italic; /* Курсив */
+                margin-left: 10px; /* Отступ слева */
+            }
+
+            .price { /* Стиль цены */
+                display: inline-block; /* Строчно-блочный элемент */
+                margin-top: 5px; /* Отступ сверху */
+                font-weight: bold; /* Жирный шрифт */
+            }
+
+            .note { /* Стиль пометки "Нет в наличии" */
+                font-size: 0.9em; /* Размер шрифта */
+                color: darkred; /* Цвет текста */
+                margin-top: 5px; /* Отступ сверху */
+            }
+        </style>
     </head>     
 
     <body onload="showBooks()">
@@ -35,7 +93,7 @@
 
         <main>
             <h1>Список книг</h1>
-            <div id="bookList"></div>
+            <div id="bookList"></div> <!-- Контейнер для списка книг -->
         </main>
 
         <footer > 
