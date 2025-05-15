@@ -14,13 +14,21 @@
                 let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43]; // значения столбцов
                 let color = ['red', 'green', 'blue', 'orange', 'purple', 'cyan', 'magenta', 'lime', 'brown', 'gold']; // массив цветов
                 let bars = document.getElementsByClassName('bar'); // получаем все элементы с классом bar
-                const diagWidth = document.getElementById('diag').clientWidth; // получаем ширину контейнера
+                const diagHeight = document.getElementById('diag').clientHeight; // получаем высоту контейнера
                 const maxData = Math.max(...data); // максимальное значение из массива
-                const k = diagWidth / maxData * 0.9; // коэффициент масштабирования
-
-                for (let i = 0; i < data.length; i++) {
-                    bars[i].style.width = (k * data[i]) + 'px'; // ширина блока в зависимости от значения
-                    bars[i].style.backgroundColor = color[i]; // цвет из массива
+                const k = diagHeight / maxData * 0.9; // коэффициент масштабирования для высоты
+                
+                for (let i = 0; i < data.length; i++) { // для вертикальных
+                    bars[i].style.height = (k * data[i]) + 'px'; // теперь меняем высоту
+                    bars[i].style.backgroundColor = color[i];
+                    bars[i].textContent = data[i];
+                    bars[i].style.color = 'black'; // цвет текста
+                    bars[i].style.fontWeight = 'bold'; // жирный шрифт
+                    bars[i].style.display = 'flex'; // Устанавливаем отображение элемента как flex-контейнера
+                    bars[i].style.flexDirection = 'column'; // текст вверху
+                    bars[i].style.alignItems = 'center'; // Выравниваем flex-элементы по центру по поперечной оси
+                    bars[i].style.justifyContent = 'flex-start'; // текст наверху блока
+                    bars[i].style.padding = '2px'; // Устанавливаем внутренние отступы
                 }
             }
         </script>
@@ -28,13 +36,17 @@
         <style>
             #diag {
                 display: flex;
-                flex-direction: column; /* Размещаем блоки вертикально (в столбик) */
-                align-items: flex-start; /* Выравниваем по левому краю */
+                /* flex-direction: column; /* Размещаем блоки вертикально (в столбик) */
+                flex-direction: row; /* теперь слева направо (в строку)*/
+                /* align-items: flex-start; /* Выравниваем по левому краю */
+                align-items: flex-end; /* выравнивание столбцов по нижнему краю */
                 gap: 2px; /* Минимальный отступ между блоками */
                 background-color: white; /* Белый фон */
                 border: 1px solid #000000; /* Граница толщиной 2px и серого цвета */
                 margin: 20px; /* задаем внешний отступ */
                 max-width: 300px; /* Ширина всей диаграммы */
+                height: 300px; /* Длина всей диаграммы */
+                padding: 5px;
             }
 
             .bar {
