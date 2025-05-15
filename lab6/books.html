@@ -8,18 +8,35 @@
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
+        <script src="book.js"></script> <!-- Подгрузка списка книг  -->
 
-        <script></script>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList'); // Получение места для вывода книг
+                for (let i = 0; i < books.length; i++) { // переюираем массив с кнгами
+                    bookList.innerHTML += `
+                        <div>
+                            <b>${ books[i].author }.</b>
+                            <i>${ books[i].name }</i>
+                            &mdash; ${ books[i].publicationYear }
+                        </div>
+                    `
+                } 
+            }
+        </script>
 
         <style></style>
     </head>     
 
-    <body>
+    <body onload="showBooks()">
         <header>
             НГТУ, ФБ, Лабораторная работа 6
         </header>
 
-        <main></main>
+        <main>
+            <h1>Список книг</h1>
+            <div id="bookList"></div>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
