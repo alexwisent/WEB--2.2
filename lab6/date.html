@@ -23,6 +23,16 @@
                 document.getElementById('locale-pk').textContent = "Дата и время для пакистанской локали: " + now.toLocaleString('en-PK');
                 document.getElementById('locale-cn').textContent = "Дата и время для китайской локали: " + now.toLocaleString('zh-CN');
             }
+            function changeColors() { // функция, которая изменяет цвет шапки
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`; // в каждую записываем генерацию случайного числа
+                header.style.color = rgb; // записываем этот цвет в css свойство шапки 
+            }
+            function startChangeColors() { // Код кнопки «Старт» 
+                changeColors();
+                setInterval(changeColors, 1000);
+            }
+
         </script>
 
         <style>
@@ -46,6 +56,11 @@
 
         <main>
             <div id="current-date"></div>
+            <div>
+                <button onclick="startChangeColors()">Старт</button> 
+                <button onclick="stopChangeColors()" disabled>Стоп</button> 
+            </div>
+
             <div id="locale-ru"></div>
             <div id="locale-za"></div>
             <div id="locale-eg"></div>
