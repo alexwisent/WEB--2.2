@@ -9,19 +9,203 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <script>
+            let temperatures = []; // Массив для хранения температур по дням
+            let selectedDay = null; // Переменная для хранения выбранного дня (элемента), чтобы можно было сбросить подсветку
 
-        <style></style>
+            function generateTemperatures() {
+                temperatures = []; // Очищаем массив перед новой генерацией
+                for (let i = 0; i < 30; i++) { // Для каждого из 30 дней
+                    let min = Math.floor(Math.random() * 20); // от 0 до 19
+                    let max = Math.floor(Math.random() * 21 + 20); // от 20 до 40
+                    if (min > max) [min, max] = [max, min]; // Если случайно min оказался больше max — меняем их местами
+                    temperatures.push({ min, max }); // Добавляем объект с температурами в массив
+                }
+            }
+
+            function showDiagram() { // Функция отображения диаграммы температур
+                generateTemperatures(); // Генерируем новые температуры
+                const diag = document.getElementById('diag'); // Получаем контейнер диаграммы
+                diag.innerHTML = ''; // Очищаем его содержимое
+
+                const maxTemp = 40; // Максимально возможная температура
+                const k = (diag.clientHeight - 30) / maxTemp; // Коэффициент масштабирования высоты столбцов
+
+                for (let i = 0; i < 30; i++) { // Создаем столбцы для каждого дня
+                    const dayGroup = document.createElement('div'); // контейнер для одного дня
+                    dayGroup.className = 'day-bar'; // Класс для стилей
+                    dayGroup.dataset.index = i; // Запоминаем номер дня в data-атрибуте
+
+                    // Контейнер для столбцов
+                    const barsContainer = document.createElement('div');
+                    barsContainer.className = 'bars-container';
+                    
+                    // Столбцы температур
+                    const maxBar = document.createElement('div'); // Столбец для максимальной температуры
+                    maxBar.className = 'bar max-bar'; // Класс для стилей
+                    const maxHeight = temperatures[i].max * k; // Высота столбца по температуре
+                    maxBar.style.height = `${maxHeight}px`; // Устанавливаем высоту
+                    maxBar.textContent = temperatures[i].max + '°'; // Отображаем значение
+                    
+                    const minBar = document.createElement('div'); // Столбец для минимальной температуры
+                    minBar.className = 'bar min-bar'; // Класс для стилей
+                    const minHeight = temperatures[i].min * k; // Высота столбца
+                    minBar.style.height = `${minHeight}px`; // Устанавливаем высоту
+                    minBar.textContent = temperatures[i].min + '°'; // Отображаем значение
+
+                    // Номер дня
+                    const dayLabel = document.createElement('div'); // Подпись дня под столбцами
+                    dayLabel.className = 'day-label'; // Класс для стилей
+                    dayLabel.textContent = i + 1; // Номер дня (1–30)
+
+                    // Добавляем столбцы в контейнер
+                    barsContainer.appendChild(maxBar);
+                    barsContainer.appendChild(minBar);
+                    
+                    // Добавляем контейнер столбцов и подпись дня в группу дня
+                    dayGroup.appendChild(barsContainer);
+                    dayGroup.appendChild(dayLabel);
+                    
+                    diag.appendChild(dayGroup); // Добавляем группу дня в диаграмму
+                }
+            }
+
+            function highlightDay() { // Функция выделения выбранного дня и отображения температур
+                const input = document.getElementById('day-input');
+                const day = parseInt(input.value);
+
+                if (isNaN(day) || day < 1 || day > 30) {
+                    alert("Введите номер дня от 1 до 30");
+                    return;
+                }
+
+                if (selectedDay !== null) {
+                    selectedDay.classList.remove('selected-day');
+                }
+
+                const allGroups = document.getElementsByClassName('day-bar');
+                const selected = allGroups[day - 1];
+                selected.classList.add('selected-day');
+                selectedDay = selected;
+
+                const t = temperatures[day - 1];
+                document.getElementById('result').textContent = `День ${day}: мин температура = ${t.min}°, макс = ${t.max}°`;
+            }
+        </script>
+
+        <style>
+            #diag {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: flex-end;
+                gap: 4px;
+                background-color: white;
+                border: 1px solid #000;
+                margin: 20px;
+                height: 300px;
+                padding: 10px;
+                overflow: hidden; /* Скрываем содержимое, выходящее за границы */
+            }
+
+            .day-bar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 30px;
+                height: 100%;
+            }
+
+            .bars-container {
+                position: relative;
+                width: 100%;
+                height: calc(100% - 20px); /* Оставляем место для подписи дня */
+            }
+
+            .bar {
+                width: 20px;
+                border-radius: 2px 2px 0 0;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                color: black;
+                font-weight: bold;
+                font-size: 10px;
+                padding-top: 2px; /* Только верхний отступ */
+                box-sizing: border-box;
+                overflow: visible;
+            }
+
+            .min-bar {
+                background-color: lightblue;
+                z-index: 2;
+                width: 16px;
+                opacity: 0.8;
+            }
+
+            .max-bar {
+                background-color: coral;
+                z-index: 1;
+            }
+
+            .selected-day .bar {
+                outline: 3px solid blueviolet;
+            }
+
+            .day-label {
+                margin-top: 3px;
+                font-size: 12px;
+                color: #333;
+                height: 20px;
+            }
+
+            #controls {
+                margin: 10px 20px;
+            }
+
+            #result {
+                margin: 10px 20px;
+                font-weight: bold;
+            }
+
+            input {
+                padding: 5px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 14px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        </style>
     </head>     
 
-    <body>
+    <body onload="showDiagram()">
         <header>
             НГТУ, ФБ, Лабораторная работа 6
         </header>
 
-        <main></main>
+        <main>
+            <div id="diag"></div>
 
-        <footer > 
+            <div id="controls">
+                <label for="day-input">Введите номер дня (1-30): </label>
+                <input type="number" id="day-input" min="1" max="30">
+                <button onclick="highlightDay()">Показать</button>
+                <button onclick="showDiagram()">Обновить</button>
+            </div>
+
+            <div id="result"></div>
+        </main>
+
+        <footer> 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
         </footer>        
     </body>
