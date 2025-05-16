@@ -44,6 +44,21 @@
                 document.getElementById('start-btn').disabled = false;
                 document.getElementById('stop-btn').disabled = true;
             }
+
+            let timeUpdateTimer; // таймер обновления даты и времени
+
+            function startUpdateTime() {
+                showDate();
+                timeUpdateTimer = setInterval(showDate, 1000); // обновление каждую секунду
+                document.getElementById('start-time-btn').disabled = true;
+                document.getElementById('stop-time-btn').disabled = false;
+            }
+
+            function stopUpdateTime() {
+                clearInterval(timeUpdateTimer);
+                document.getElementById('start-time-btn').disabled = false;
+                document.getElementById('stop-time-btn').disabled = true;
+            }
         </script>
 
         <style>
@@ -73,6 +88,8 @@
             <div>
                 <button onclick="startChangeColors()" id="start-btn">Старт</button> 
                 <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button> 
+                <button onclick="startUpdateTime()" id="start-time-btn">Обновлять время</button> 
+                <button onclick="stopUpdateTime()" disabled id="stop-time-btn" >Остановить обновление времени</button>
             </div>
 
             <div id="locale-ru"></div>
