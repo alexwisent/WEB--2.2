@@ -71,118 +71,119 @@
             }
 
             function highlightDay() { // Функция выделения выбранного дня и отображения температур
-                const input = document.getElementById('day-input');
-                const day = parseInt(input.value);
+                const input = document.getElementById('day-input'); // Получаем элемент input с id="day-input"
+                const day = parseInt(input.value); // Преобразуем введенное значение в целое число
 
-                if (isNaN(day) || day < 1 || day > 30) {
-                    alert("Введите номер дня от 1 до 30");
+                if (isNaN(day) || day < 1 || day > 30) { // Проверка корректности введенного значения: что введено число, не меньше 1, не боьше 30
+                    alert("Введите номер дня от 1 до 30"); // Если проверка не пройдена - показываем alert и выходим из функции
                     return;
                 }
 
-                if (selectedDay !== null) {
-                    selectedDay.classList.remove('selected-day');
+                if (selectedDay !== null) { // Проверяем, есть ли уже выделенный день
+                    selectedDay.classList.remove('selected-day'); // Если есть - удаляем класс 'selected-day' у предыдущего выделенного элемента
                 }
 
-                const allGroups = document.getElementsByClassName('day-bar');
-                const selected = allGroups[day - 1];
-                selected.classList.add('selected-day');
-                selectedDay = selected;
+                const allGroups = document.getElementsByClassName('day-bar'); // Получаем все элементы с классом 'day-bar' (все дни на диаграмме)
+                const selected = allGroups[day - 1]; // Выбираем нужный день (индексы начинаются с 0, поэтому day - 1)
+                selected.classList.add('selected-day'); // Добавляем класс 'selected-day' для визуального выделения
+                selectedDay = selected; // Сохраняем выбранный элемент в переменную selectedDay для последующего использования
 
-                const t = temperatures[day - 1];
+                const t = temperatures[day - 1]; // Получаем данные о температурах для выбранного дня
+                // Формируем и выводим строку с результатами в элемент с id="result":
                 document.getElementById('result').textContent = `День ${day}: мин температура = ${t.min}°, макс = ${t.max}°`;
             }
         </script>
 
         <style>
             #diag {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                align-items: flex-end;
-                gap: 4px;
-                background-color: white;
-                border: 1px solid #000;
-                margin: 20px;
-                height: 300px;
-                padding: 10px;
-                overflow: hidden; /* Скрываем содержимое, выходящее за границы */
+                display: flex; /* гибкий контейнер */
+                flex-wrap: wrap; /* перенос на новую строку */
+                justify-content: flex-start; /* выравнивание по началу */
+                align-items: flex-end; /* прижатие к низу */
+                gap: 4px; /* промежуток между элементами */
+                background-color: white; /* цвет фона */
+                border: 1px solid #000; /* граница */
+                margin: 20px; /* внешние отступы */
+                height: 300px; /* высота контейнера */
+                padding: 10px; /* внутренние отступы */
+                overflow: hidden; /* скрытие выходящего за границы */
             }
 
             .day-bar {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 30px;
-                height: 100%;
+                display: flex; /* flex-контейнер */
+                flex-direction: column; /* вертикальное расположение */
+                align-items: center; /* центрирование по горизонтали */
+                width: 30px; /* фиксированная ширина */
+                height: 100%; /* занимает всю высоту родителя */
             }
 
             .bars-container {
-                position: relative;
-                width: 100%;
-                height: calc(100% - 20px); /* Оставляем место для подписи дня */
+                position: relative; /* относительное позиционирование для абсолютных потомков */
+                width: 100%; /* занимает всю ширину родителя (.day-bar) */
+                height: calc(100% - 20px); /* высота минус место для подписи дня */
             }
 
             .bar {
-                width: 20px;
-                border-radius: 2px 2px 0 0;
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                color: black;
-                font-weight: bold;
-                font-size: 10px;
-                padding-top: 2px; /* Только верхний отступ */
-                box-sizing: border-box;
-                overflow: visible;
+                width: 20px; /* Фиксированная ширина столбца */
+                border-radius: 2px 2px 0 0; /* Закругление верхних углов */
+                position: absolute; /* Абсолютное позиционирование */
+                bottom: 0; /* Прижатие к нижнему краю */
+                left: 50%; /* Центрирование по горизонтали */
+                transform: translateX(-50%); /* Точное центрирование */
+                display: flex; /* Flex-контейнер */
+                flex-direction: column; /* Вертикальное расположение */
+                align-items: center; /* Центрирование по горизонтали */
+                justify-content: flex-start; /* Выравнивание содержимого сверху */
+                color: black; /* Цвет текста */
+                font-weight: bold; /* Жирный шрифт */
+                font-size: 10px; /* Размер шрифта */
+                padding-top: 2px; /* Верхний отступ для текста */
+                box-sizing: border-box; /* Учет padding в ширине */
+                overflow: visible; /* Видимость переполнения */
             }
 
             .min-bar {
-                background-color: lightblue;
-                z-index: 2;
-                width: 16px;
-                opacity: 0.8;
+                background-color: lightblue; /* Голубой цвет фона */
+                z-index: 2; /* Выше max-bar для наложения */
+                width: 16px; /* Уже чем max-bar на 4px */
+                opacity: 0.8; /* Полупрозрачность для визуального наложения */
             }
 
             .max-bar {
-                background-color: coral;
-                z-index: 1;
+                background-color: coral; /* Коралловый цвет фона */
+                z-index: 1; /* Ниже min-bar */
             }
 
             .selected-day .bar {
-                outline: 3px solid blueviolet;
+                outline: 3px solid blueviolet; /* Фиолетовая рамка выделения */
             }
 
             .day-label {
-                margin-top: 3px;
-                font-size: 12px;
-                color: #333;
-                height: 20px;
+                margin-top: 3px; /* Отступ сверху */
+                font-size: 12px; /* Размер шрифта */
+                color: #333; /* Темно-серый цвет текста */
+                height: 20px; /* Фиксированная высота */
             }
 
             #controls {
-                margin: 10px 20px;
+                margin: 10px 20px; /* Отступы: 10px сверху/снизу, 20px по бокам */
             }
 
             #result {
-                margin: 10px 20px;
-                font-weight: bold;
+                margin: 10px 20px; /* Аналогичные отступы */
+                font-weight: bold; /* Жирный текст */
             }
 
             input {
-                padding: 5px;
-                font-size: 14px;
+                padding: 5px; /* Внутренние отступы */
+                font-size: 14px; /* Размер шрифта */
             }
 
             button {
-                padding: 6px 12px;
-                font-size: 14px;
-                margin-left: 10px;
-                cursor: pointer;
+                padding: 6px 12px; /* Вертикальные/горизонтальные отступы */
+                font-size: 14px; /* Размер шрифта */
+                margin-left: 10px; /* Отступ слева */
+                cursor: pointer; /* Указатель при наведении */
             }
         </style>
     </head>     
@@ -197,12 +198,12 @@
 
             <div id="controls">
                 <label for="day-input">Введите номер дня (1-30): </label>
-                <input type="number" id="day-input" min="1" max="30">
-                <button onclick="highlightDay()">Показать</button>
-                <button onclick="showDiagram()">Обновить</button>
+                <input type="number" id="day-input" min="1" max="30"> <!-- Числовой ввод с ограничениями -->
+                <button onclick="highlightDay()">Показать</button> <!-- Выделяет выбранный день -->
+                <button onclick="showDiagram()">Обновить</button> <!-- Генерирует новую диаграмму -->
             </div>
 
-            <div id="result"></div>
+            <div id="result"></div> <!-- Здесь отображается информация о выбранном дне -->
         </main>
 
         <footer> 
