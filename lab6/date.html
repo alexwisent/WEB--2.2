@@ -9,15 +9,34 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
+        
         <script>
-            function showDate() { //выводит текущую дату внутрь тега id="current-date"
-                let out = document.getElementById('current-date');
-                let today = new Date(); // определяем текущую дату с помощью встроенного в JavaScript глобального объекта Date
-                out.innerHTML = today.toLocaleString('ru-RU'); // метод toLocaleString преобразует строку с датой-временем в текущую локаль
+            function showDate() {
+                const now = new Date();
+
+                document.getElementById('current-date').textContent = "Текущая дата и время: " + now.toLocaleString('ru-RU');
+
+                document.getElementById('locale-ru').textContent = "Дата и время для русской локали: " + now.toLocaleString('ru-RU');
+                document.getElementById('locale-za').textContent = "Дата и время для локали ЮАР: " + now.toLocaleString('en-ZA');
+                document.getElementById('locale-eg').textContent = "Дата и время для локали Египта: " + now.toLocaleString('ar-EG');
+                document.getElementById('locale-gr').textContent = "Дата и время для греческой локали: " + now.toLocaleString('el-GR');
+                document.getElementById('locale-pk').textContent = "Дата и время для пакистанской локали: " + now.toLocaleString('en-PK');
+                document.getElementById('locale-cn').textContent = "Дата и время для китайской локали: " + now.toLocaleString('zh-CN');
             }
         </script>
 
-        <style></style>
+        <style>
+            main div {
+                font-family: Arial, sans-serif; /* Устанавливает шрифт Arial, если его нет — используется стандартный шрифт без засечек (sans-serif) */
+                font-size: 16px; /* Размер шрифта — 16 пикселей, это стандартный и удобный для чтения размер текста */
+                margin: 10px 20px; /* Внешние отступы: 10 пикселей сверху и снизу, 20 — слева и справа. Отделяет блок от других элементов */
+                padding: 8px 12px; /* Внутренние отступы: 8 пикселей сверху и снизу, 12 — слева и справа. Создаёт пространство внутри блока вокруг текста */
+                border-left: 4px solid #4a90e2; /* Слева рисуется вертикальная полоса толщиной 4 пикселя синего цвета. Элемент выделяется визуально */
+                background-color: #f9f9f9; /* Цвет фона блока — очень светло-серый, почти белый. Делает блоки чуть заметнее на белом фоне страницы */
+                border-radius: 6px; /* Закруглённые углы блока: придаёт визуальной мягкости и современности */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Добавляет лёгкую тень под блок: создаёт эффект "приподнятости", улучшает восприятие разделения блоков */
+            }
+        </style>
     </head>     
 
     <body onload="showDate()">
@@ -27,6 +46,12 @@
 
         <main>
             <div id="current-date"></div>
+            <div id="locale-ru"></div>
+            <div id="locale-za"></div>
+            <div id="locale-eg"></div>
+            <div id="locale-gr"></div>
+            <div id="locale-pk"></div>
+            <div id="locale-cn"></div>
         </main>
 
         <footer> 
