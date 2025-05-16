@@ -23,16 +23,27 @@
                 document.getElementById('locale-pk').textContent = "Дата и время для пакистанской локали: " + now.toLocaleString('en-PK');
                 document.getElementById('locale-cn').textContent = "Дата и время для китайской локали: " + now.toLocaleString('zh-CN');
             }
+            
             function changeColors() { // функция, которая изменяет цвет шапки
                 const header = document.getElementsByTagName('header')[0];
                 const rgb = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`; // в каждую записываем генерацию случайного числа
-                header.style.color = rgb; // записываем этот цвет в css свойство шапки 
-            }
-            function startChangeColors() { // Код кнопки «Старт» 
-                changeColors();
-                setInterval(changeColors, 1000);
+                header.style.color = rgb; // записываем этот цвет в css свойство шапки
             }
 
+            let timerNum; // глобальная переменная — сохраняет ID интервала
+
+            function startChangeColors() { // Код кнопки «Старт» 
+                changeColors();
+                timerNum = setInterval(changeColors, 1500); // цвет меняется каждые 1.5 секунды
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() { // Код кнопки «Стоп» 
+                clearInterval(timerNum);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
         </script>
 
         <style>
@@ -46,6 +57,9 @@
                 border-radius: 6px; /* Закруглённые углы блока: придаёт визуальной мягкости и современности */
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Добавляет лёгкую тень под блок: создаёт эффект "приподнятости", улучшает восприятие разделения блоков */
             }
+            header {
+                transition: color 0.6s ease; /* плавное изменение цвета текста */
+            }
         </style>
     </head>     
 
@@ -57,8 +71,8 @@
         <main>
             <div id="current-date"></div>
             <div>
-                <button onclick="startChangeColors()">Старт</button> 
-                <button onclick="stopChangeColors()" disabled>Стоп</button> 
+                <button onclick="startChangeColors()" id="start-btn">Старт</button> 
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button> 
             </div>
 
             <div id="locale-ru"></div>
