@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Калужская сбытовая компания</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon-16x16.png">
+    <link rel="icon" href="favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0061af">
+    <meta name="msapplication-TileColor" content="#0061af">
+    <meta name="theme-color" content="#ffffff">
+    
+    <style>
+        :root {
+            --primary-blue: #0061AF;
+            --primary-red: #E30613;
+            --dark-gray: #1A1A1A;
+            --light-gray: #F5F5F5;
+            --text-color: #333333;
+        }
+        
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .logo svg {
+            width: 100%;
+            height: auto;
+        }
+        
+        .main-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-menu li {
+            margin-left: 30px;
+        }
+        
+        .main-menu a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        .main-menu a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .main-menu a.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-blue);
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin: 40px 0 20px;
+        }
+        
+        .contacts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .contacts-list {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card h3 {
+            margin-top: 0;
+            color: var(--primary-red);
+        }
+        
+        .contact-address {
+            margin-bottom: 10px;
+        }
+        
+        .contact-phone {
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+        
+        .regions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .region {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .region h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .office {
+            margin-bottom: 15px;
+        }
+        
+        .office-name {
+            font-weight: 500;
+        }
+        
+        .footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 99;
+        }
+        
+        @media (max-width: 768px) {
+            .contacts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.svg" alt="Калужская сбытовая компания">
+            </div>
+            <ul class="main-menu">
+                <li><a href="index.html">О компании</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="currency.html">Курс валют</a></li>
+                <li><a href="contacts.html" class="active">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1>Контактные данные</h1>
+            
+            <div class="contacts-section">
+                <div class="map-container">
+                    <!-- Карта с метками всех адресов -->
+                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1n1ks_LA9YN2bqqTsuLworZav74noqro&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+                </div>
+                
+                <div class="contacts-list">
+                    <div class="contact-card">
+                        <h3>Головной офис</h3>
+                        <p class="contact-address">248001, г. Калуга, ул. Циолковского, 4</p>
+                        <p class="contact-phone">Телефоны: 8 (4842) 277-740, 8 (4842) 701-952, 8 (4842) 701-957, 8 (4842) 701-958</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>Центр обслуживания клиентов</h3>
+                        <p class="contact-address">248016, г. Калуга, ул. Вишневского, 1</p>
+                        <p class="contact-phone">Телефон: 8 (4842) 57-97-70</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>Электронная почта</h3>
+                        <p class="contact-address">Для обращений клиентов:</p>
+                        <p class="contact-phone">info@kskkaluga.ru</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h3>График работы</h3>
+                        <p class="contact-address">Пн-Чт: 8:30 - 17:30</p>
+                        <p class="contact-address">Пт: 8:30 - 16:15</p>
+                        <p class="contact-address">Сб-Вс: выходной</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Региональные отделения</h2>
+            
+            <div class="regions">
+                <div class="region">
+                    <h3>Перемышльский район</h3>
+                    <div class="office">
+                        <p class="office-name">Перемышльский производственный участок</p>
+                        <p>Адрес: 249130, с. Перемышль, ул. Коммунаров, д. 43</p>
+                        <p>Телефоны: 8 (48441) 31-322, 8 (48441) 31-344</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Козельский район</h3>
+                    <div class="office">
+                        <p class="office-name">Сосенский участок</p>
+                        <p>Адрес: 249711, г. Сосенский, ул. Мира, 4А</p>
+                        <p>Телефон: 8 (48442) 455-70</p>
+                    </div>
+                    <div class="office">
+                        <p class="office-name">Козельский производственный участок</p>
+                        <p>Адрес: 249720, г. Козельск, ул. Чкалова, 69</p>
+                        <p>Телефон: 8 (48442) 224-44</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Бабынинский район</h3>
+                    <div class="office">
+                        <p class="office-name">Бабынинский производственный участок</p>
+                        <p>Адрес: 249210, п. Бабынино, ул. Ленина, 10</p>
+                        <p>Телефон: 8 (48448) 217-15</p>
+                    </div>
+                </div>
+
+                <div class="region">
+                    <h3>Дзержинский район</h3>
+                    <div class="office">
+                        <p class="office-name">Кондровский производственный участок</p>
+                        <p>Адрес: 249832, г. Кондрово, ул. Советская, 16</p>
+                        <p>Телефоны: 8 (48434) 322-608, 8 (48434) 330-54</p>
+                    </div>
+                    <div class="office">
+                        <p class="office-name">Товарковский участок</p>
+                        <p>Адрес: 249855, п. Товарково, ул. Ленина, 4А</p>
+                        <p>Телефоны: 8 (48434) 400-398, 8 (48434) 434-80</p>
+                    </div>
+                    <div class="office">
+                        <p class="office-name">Льва-Толстовский участок</p>
+                        <p>Адрес: 249842, с. Льва Толстого, ул. Спортивная, 16</p>
+                        <p>Телефон: 8 (4842) 701-843</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Ульяновский район</h3>
+                    <div class="office">
+                        <p class="office-name">Ульяновский производственный участок</p>
+                        <p>Адрес: 249750, с. Ульяново, ул. Большая Советская, 85</p>
+                        <p>Телефоны: 8 (48443) 211-108, 8 (48443) 210-02</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Ферзиковский район</h3>
+                    <div class="office">
+                        <p class="office-name">Ферзиковский производственный участок</p>
+                        <p>Адрес: 249800, п. Ферзиково, ул. Карпова, д. 21</p>
+                        <p>Телефон: 8 (48437) 31-908</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Боровский район</h3>
+                    <div class="office">
+                        <p class="office-name">Боровский производственный участок</p>
+                        <p>Адрес: 249000, г. Балабаново, ул. Боровская, д. 5</p>
+                        <p>Телефоны: 8 (48438) 617-228, 8 (48438) 621-248, 8 (48438) 211-258, 8 (48438) 211-30</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Жуковский район</h3>
+                    <div class="office">
+                        <p class="office-name">Жуковский производственный участок</p>
+                        <p>Адрес: 249192, г. Жуков, ул. Ленина, д.1</p>
+                        <p>Телефоны: 8 (48432) 5-59-098, 8 (4842) 21-01-69</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Износковский район</h3>
+                    <div class="office">
+                        <p class="office-name">Износковский производственный участок</p>
+                        <p>Адрес: 249880, с. Износки, ул. Ленина, д.6А</p>
+                        <p>Телефон: 8 (48449) 452-08</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Малоярославецкий район</h3>
+                    <div class="office">
+                        <p class="office-name">Малоярославецкий производственный участок</p>
+                        <p>Адрес: 249096, г. Малоярославец, ул. Горького, д. 33</p>
+                        <p>Телефон: 8 (48431) 545-04</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Медынский район</h3>
+                    <div class="office">
+                        <p class="office-name">Медынский производственный участок</p>
+                        <p>Адрес: 249950, г. Медынь, проспект Ленина, д.9</p>
+                        <p>Телефоны: 8 (48433) 213-418, 8 (48433) 226-44</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Обнинск</h3>
+                    <div class="office">
+                        <p class="office-name">Обнинский производственный участок</p>
+                        <p>Адрес: 249039, г. Обнинск, проспект Маркса, 100</p>
+                        <p>Телефоны: 8 (48439) 795-308, 8 (48439) 553-618, 8 (48439) 557-46</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Тарусский район</h3>
+                    <div class="office">
+                        <p class="office-name">Тарусский производственный участок</p>
+                        <p>Адрес: 249100, г. Таруса, ул. Ленина, д.18</p>
+                        <p>Телефоны: 8 (48435) 231-568, 8 (48435) 258-62</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Юхновский район</h3>
+                    <div class="office">
+                        <p class="office-name">Юхновский участок</p>
+                        <p>Адрес: 249910, г. Юхнов, ул. Ленина, 13</p>
+                        <p>Телефоны: 8 (48436) 218-588, 8 (48436) 212-99</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Барятинский район</h3>
+                    <div class="office">
+                        <p class="office-name">Барятинский производственный участок</p>
+                        <p>Адрес: 249650, п. Барятино, ул. 1 Мая, 4</p>
+                        <p>Телефоны: 8 (48454) 235-608, 8 (48454) 235-33</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Думиничский район</h3>
+                    <div class="office">
+                        <p class="office-name">Думиничский производственный участок</p>
+                        <p>Адрес: 249300, п. Думиничи, ул. Ленина, 12</p>
+                        <p>Телефон: 8 (48447) 972-05</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Жиздринский район</h3>
+                    <div class="office">
+                        <p class="office-name">Жиздринский производственный участок</p>
+                        <p>Адрес: 249340, г. Жиздра, ул. Луначарского, 2</p>
+                        <p>Телефоны: 8 (48445) 228-368, 8 (48445) 214-75</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Кировский район</h3>
+                    <div class="office">
+                        <p class="office-name">Кировский производственный участок</p>
+                        <p>Адрес: 249440, г. Киров, ул. Мира, 23Б</p>
+                        <p>Телефон: 8 (48456) 562-27</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Куйбышевский район</h3>
+                    <div class="office">
+                        <p class="office-name">Куйбышевский производственный участок</p>
+                        <p>Адрес: 249500, п. Бетлица, пер. Порошина, 8</p>
+                        <p>Телефон: 8 (48457) 219-61</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Людиновский район</h3>
+                    <div class="office">
+                        <p class="office-name">Людиновский производственный участок</p>
+                        <p>Адрес: 249400, г. Людиново, ул. Рагули, 14</p>
+                        <p>Телефоны: 8 (48444) 673-418, 8 (48444) 673-40</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Мещовский район</h3>
+                    <div class="office">
+                        <p class="office-name">Мещовский производственный участок</p>
+                        <p>Адрес: 249240, г. Мещовск, проспект Революции, 8</p>
+                        <p>Телефоны: 8 (48446) 924-088, 8 (48446) 929-67</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Мосальский район</h3>
+                    <div class="office">
+                        <p class="office-name">Мосальский производственный участок</p>
+                        <p>Адрес: 249930, г. Мосальск, ул. Энгельса 43А</p>
+                        <p>Телефон: 8 (48452) 261-41</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Спас-Деменский район</h3>
+                    <div class="office">
+                        <p class="office-name">Спас-Деменский производственный участок</p>
+                        <p>Адрес: 249610, г. Спас-Деменск, ул. Советская, 102, к. 2</p>
+                        <p>Телефон: 8 (48455) 216-04</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Сухиничский район</h3>
+                    <div class="office">
+                        <p class="office-name">Сухиничский производственный участок</p>
+                        <p>Адрес: 249275, г. Сухиничи, ул. Ленина, 74А</p>
+                        <p>Телефон: 8 (48451) 516-56</p>
+                    </div>
+                </div>
+                
+                <div class="region">
+                    <h3>Хвастовичский район</h3>
+                    <div class="office">
+                        <p class="office-name">Хвастовичский производственный участок</p>
+                        <p>Адрес: 249360, c. Хвастовичи, ул. Талалушкина, 4</p>
+                        <p>Телефон: 8 (48453) 922-78</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>О компании</h3>
+                <a href="#">Руководство</a>
+                <a href="#">Лицензии</a>
+                <a href="#">Реквизиты</a>
+                <a href="#">Документы</a>
+            </div>
+            <div class="footer-column">
+                <h3>Потребителям</h3>
+                <a href="#">Физическим лицам</a>
+                <a href="#">Юридическим лицам</a>
+                <a href="#">Тарифы</a>
+                <a href="#">Энергосбережение</a>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <p>248016, г. Калуга, ул. Вишневского, 1</p>
+                <p>+7 (4842) 57-97-70</p>
+                <p>info@kskkaluga.ru</p>
+            </div>
+            <div class="footer-column">
+                <h3>Оплата</h3>
+                <a href="#">Способы оплаты</a>
+                <a href="#">Офисы и терминалы</a>
+                <a href="#">Онлайн-оплата</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 АО "Калужская сбытовая компания". Все права защищены.
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top">↑</a>
+    
+    <script>
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html>
