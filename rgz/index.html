@@ -4,18 +4,303 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Калужская СК - Официальный сайт</title>
-        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-        <link rel="icon" href="../favicon-32x32.png">
-        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-16x16.png">
+        <link rel="icon" href="favicon-16x16.png">
+
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0061af">
+        <meta name="msapplication-TileColor" content="#0061af">
+        <meta name="theme-color" content="#ffffff">
         
-        <style></style>
+        <style>
+            :root {
+                --primary-blue: #0061AF;
+                --primary-red: #E30613;
+                --dark-gray: #1A1A1A;
+                --light-gray: #F5F5F5;
+                --text-color: #333333;
+            }
+            
+            body {
+                font-family: 'Roboto', Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+            
+            .header {
+                background-color: white;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                padding: 15px 20px;
+            }
+            
+            .header-container {
+                display: flex;
+                justify-content: center;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            
+            .logo {
+                width: 180px;
+            }
+            
+            .logo svg {
+                width: 100%;
+                height: auto;
+            }
+            
+            .main-menu {
+                position: fixed;
+                right: 0;
+                top: 0;
+                height: 100vh;
+                width: 200px;
+                background-color: white;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                padding: 100px 20px 20px;
+                box-sizing: border-box;
+                z-index: 99;
+            }
+            
+            .main-menu a {
+                color: var(--dark-gray);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 16px;
+                transition: color 0.3s;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .main-menu a:hover {
+                color: var(--primary-blue);
+            }
+            
+            .main-menu a.active {
+                color: var(--primary-blue);
+                font-weight: 700;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                padding-right: 220px; /* Добавляем отступ для меню */
+            }
+            
+            h1, h2, h3 {
+                color: var(--primary-blue);
+            }
+            
+            h1 {
+                font-size: 36px;
+                margin-bottom: 30px;
+            }
+            
+            h2 {
+                font-size: 28px;
+                margin: 40px 0 20px;
+            }
+            
+            .about-section {
+                margin-bottom: 50px;
+            }
+            
+            .about-image {
+                float: right;
+                margin-left: 30px;
+                margin-bottom: 20px;
+                max-width: 50%;
+                border-radius: 5px;
+            }
+            
+            .services {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 30px;
+                margin-top: 30px;
+            }
+            
+            .service-card {
+                background: white;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+                border-radius: 5px;
+                padding: 25px;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            
+            .service-card h3 {
+                margin-top: 0;
+                color: var(--primary-red);
+            }
+            
+            .highlight {
+                font-weight: 700;
+                color: var(--primary-blue);
+            }
+            
+            .footer {
+                background-color: var(--dark-gray);
+                color: white;
+                padding: 40px 0;
+            }
+            
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-column h3 {
+                color: white;
+                margin-top: 0;
+            }
+            
+            .footer-column a {
+                color: #ccc;
+                text-decoration: none;
+                display: block;
+                margin-bottom: 10px;
+            }
+            
+            .footer-column a:hover {
+                color: white;
+            }
+            
+            .copyright {
+                text-align: center;
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #444;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     </head>
     <body>
-        <header class="header"></header>
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="logo.svg" alt="Калужская сбытовая компания">
+                </div>
+            </div>
+        </header>
         
-        <main></main>
+        <!-- Фиксированное меню справа -->
+        <nav class="main-menu">
+            <a href="index.html" class="active">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="currency.html">Курс валют</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+        
+        <main>
+            <div class="container">
+                <h1>Калужская сбытовая компания</h1>
+                
+                <div class="about-section">
+                    <img src="logo.svg" alt="Калужская сбытовая компания" class="about-image">
+                    <h2>О компании</h2>
+                    <p><span class="highlight">АО "Калужская сбытовая компания"</span> - гарантирующий поставщик электрической энергии на территории Калужской области.</p>
+                    <p>Компания осуществляет <span class="highlight">продажу электрической энергии</span> населению и предприятиям, а также выполняет функции по расчетам на розничном рынке электроэнергии.</p>
+                    <p>Мы обеспечиваем <span class="highlight">надежное энергоснабжение</span> и качественное обслуживание более 400 тысяч потребителей региона.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2>Наши услуги</h2>
+                    <p>Калужская сбытовая компания предоставляет полный комплекс услуг в сфере энергосбытовой деятельности:</p>
+                    
+                    <div class="services">
+                        <div class="service-card">
+                            <h3>Продажа электроэнергии</h3>
+                            <p>Обеспечение надежных поставок электроэнергии населению и предприятиям Калужской области.</p>
+                        </div>
+                        <div class="service-card">
+                            <h3>Расчетно-кассовое обслуживание</h3>
+                            <p>Прием платежей, работа с дебиторской задолженностью, учет потребления электроэнергии.</p>
+                        </div>
+                        <div class="service-card">
+                            <h3>Контроль качества</h3>
+                            <p>Мониторинг качества электроэнергии и напряжения в сетях.</p>
+                        </div>
+                        <div class="service-card">
+                            <h3>Работа с приборами учета</h3>
+                            <p>Установка, поверка и замена приборов учета электроэнергии.</p>
+                        </div>
+                        <div class="service-card">
+                            <h3>Консультации потребителей</h3>
+                            <p>Разъяснительная работа по вопросам энергосбережения и правил пользования электроэнергией.</p>
+                        </div>
+                        <div class="service-card">
+                            <h3>Диспетчерская служба</h3>
+                            <p>Круглосуточный прием сообщений о нарушениях в электроснабжении.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h2>Наши показатели</h2>
+                    <p>Калужская сбытовая компания - это:</p>
+                    <ul>
+                        <li>Более <span class="highlight">400 000</span> обслуживаемых потребителей</li>
+                        <li><span class="highlight">27</span> клиентских офисов по области</li>
+                        <li>Собственный <span class="highlight">контакт-центр</span> с многоканальным телефоном</li>
+                        <li>Современные <span class="highlight">IT-системы</span> учета и расчетов</li>
+                        <li>Более <span class="highlight">500</span> квалифицированных сотрудников</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
 
-        <footer class="footer"></footer>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <a href="#">Руководство</a>
+                    <a href="#">Лицензии</a>
+                    <a href="#">Реквизиты</a>
+                    <a href="#">Документы</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Потребителям</h3>
+                    <a href="#">Физическим лицам</a>
+                    <a href="#">Юридическим лицам</a>
+                    <a href="#">Тарифы</a>
+                    <a href="#">Энергосбережение</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>248016, г. Калуга, ул. Вишневского, 1</p>
+                    <p>+7 (4842) 57-97-70</p>
+                    <p>info@kskkaluga.ru</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Оплата</h3>
+                    <a href="#">Способы оплаты</a>
+                    <a href="#">Офисы и терминалы</a>
+                    <a href="#">Онлайн-оплата</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2023 АО "Калужская сбытовая компания". Все права защищены.
+            </div>
+        </footer>
         
         <a href="#" class="back-to-top">↑</a>
         
