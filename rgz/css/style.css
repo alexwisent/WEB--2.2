@@ -246,347 +246,347 @@ h2 {
 	display: none; /* Скрыт по умолчанию */
 }
 
-.current-rate {
-	margin-bottom: 20px;
-	font-size: 16px;
+.current-rate { /* Стили для блока с текущим курсом */
+	margin-bottom: 20px; /* Нижний внешний отступ */
+	font-size: 16px; /* Размер шрифта */
 }
 
-.current-rate span {
-	font-weight: bold;
-	color: var(--primary-blue);
+.current-rate span { /* Стили для текста внутри блока с текущим курсом */
+	font-weight: bold; /* Жирный шрифт */
+	color: var(--primary-blue); /* Цвет текста из CSS-переменной */
 }
 
-.chart-container {
-	background: white;
-	padding: 30px;
-	border-radius: 5px;
-	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+.chart-container { /* Стили для контейнера графика */
+	background: white; /* Белый фон */
+	padding: 30px; /* Внутренние отступы */
+	border-radius: 5px; /* Скругление углов */
+	box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Тень */
 }
 
-.chart-title {
-	margin-top: 0;
-	color: var(--primary-blue);
+.chart-title { /* Стили для заголовка графика */
+	margin-top: 0; /* Убираем верхний отступ */
+	color: var(--primary-blue); /* Цвет текста из CSS-переменной */
 }
 
-.chart {
-	height: 400px;
-	margin-top: 30px;
-	position: relative;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
+.chart { /* Стили для самого графика */
+	height: 400px; /* Фиксированная высота */
+	margin-top: 30px; /* Верхний внешний отступ */
+	position: relative; /* Относительное позиционирование */
+	display: flex; /* Flex-контейнер */
+	align-items: flex-end; /* Выравнивание по нижнему краю */
+	justify-content: space-between; /* Равномерное распределение */
 }
 
-.bar-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
-	max-width: 40px;
-	margin: 0 5px;
+.bar-container { /* Стили для контейнера столбца */
+	display: flex; /* Flex-контейнер */
+	flex-direction: column; /* Вертикальное расположение */
+	align-items: center; /* Выравнивание по центру */
+	flex: 1; /* Равномерное распределение */
+	max-width: 40px; /* Максимальная ширина */
+	margin: 0 5px; /* Внешние отступы */
 }
 
-.bar {
-	width: 30px;
-	background: var(--primary-blue);
-	border-radius: 3px 3px 0 0;
-	cursor: pointer;
-	transition: background-color 0.3s;
-	position: relative;
+.bar { /* Стили для столбца графика */
+	width: 30px; /* Ширина столбца */
+	background: var(--primary-blue); /* Цвет фона из CSS-переменной */
+	border-radius: 3px 3px 0 0; /* Скругление верхних углов */
+	cursor: pointer; /* Курсор-указатель */
+	transition: background-color 0.3s; /* Плавное изменение цвета */
+	position: relative; /* Относительное позиционирование */
 }
 
-.bar:hover {
-	background: #004080;
+.bar:hover { /* Стили для столбца при наведении */
+	background: #004080; /* Темно-синий цвет */
 }
 
-.bar.active {
-	background: var(--primary-red);
+.bar.active { /* Стили для активного столбца */
+	background: var(--primary-red); /* Цвет фона из CSS-переменной */
 }
 
-.bar-label {
-	margin-top: 10px;
-	font-size: 12px;
-	text-align: center;
-	word-break: break-all;
-	max-width: 100%;
+.bar-label { /* Стили для подписи столбца */
+	margin-top: 10px; /* Верхний внешний отступ */
+	font-size: 12px; /* Размер шрифта */
+	text-align: center; /* Выравнивание по центру */
+	word-break: break-all; /* Перенос длинных слов */
+	max-width: 100%; /* Максимальная ширина */
 }
 
-.about-section {
-	margin-bottom: 50px;
+.about-section { /* Стили для секции "О нас" */
+	margin-bottom: 50px; /* Нижний внешний отступ */
 }
 
-.about-image {
-	float: right;
-	margin-left: 30px;
-	margin-bottom: 20px;
-	max-width: 50%;
-	border-radius: 5px;
+.about-image { /* Стили для изображения в секции "О нас" */
+	float: right; /* Обтекание справа */
+	margin-left: 30px; /* Левый внешний отступ */
+	margin-bottom: 20px; /* Нижний внешний отступ */
+	max-width: 50%; /* Максимальная ширина */
+	border-radius: 5px; /* Скругление углов */
 }
 
-.services {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-	gap: 30px;
-	margin-top: 30px;
+.services { /* Сетка для сервисов */
+	display: grid; /* CSS грид */
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Автоподбор колонок */
+	gap: 30px; /* Расстояние между элементами */
+	margin-top: 30px; /* Верхний внешний отступ */
 }
 
-.service-card {
-	background: white;
-	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-	border-radius: 5px;
-	padding: 25px;
-	transition: transform 0.3s, box-shadow 0.3s;
+.service-card { /* Стили для карточки сервиса */
+	background: white; /* Белый фон */
+	box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Тень */
+	border-radius: 5px; /* Скругление углов */
+	padding: 25px; /* Внутренние отступы */
+	transition: transform 0.3s, box-shadow 0.3s; /* Плавные анимации */
 }
 
-.service-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.service-card:hover { /* Стили для карточки сервиса при наведении */
+	transform: translateY(-5px); /* Сдвиг вверх */
+	box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Увеличенная тень */
 }
 
-.service-card h3 {
-	margin-top: 0;
-	color: var(--primary-red);
+.service-card h3 { /* Стили для заголовка в карточке сервиса */
+	margin-top: 0; /* Убираем верхний отступ */
+	color: var(--primary-red); /* Цвет текста из CSS-переменной */
 }
 
-.highlight {
-	font-weight: 700;
-	color: var(--primary-blue);
+.highlight { /* Стили для выделенного текста */
+	font-weight: 700; /* Жирный шрифт */
+	color: var(--primary-blue); /* Цвет текста из CSS-переменной */
 }
 			
-.chart-info {
-	margin-top: 30px;
-	padding: 15px;
-	background: #f0f7ff;
-	border-radius: 4px;
-	display: none;
+.chart-info { /* Стили для блока с информацией о графике */
+	margin-top: 30px; /* Верхний внешний отступ */
+	padding: 15px; /* Внутренние отступы */
+	background: #f0f7ff; /* Светло-голубой фон */
+	border-radius: 4px; /* Скругление углов */
+	display: none; /* Скрыт по умолчанию */
 }
 
-.loading {
-	text-align: center;
-	padding: 30px;
-	font-size: 18px;
+.loading { /* Стили для индикатора загрузки */
+	text-align: center; /* Выравнивание по центру */
+	padding: 30px; /* Внутренние отступы */
+	font-size: 18px; /* Размер шрифта */
 }
 
-.news-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-	gap: 30px;
-	margin-top: 30px;
+.news-container { /* Сетка для новостей */
+	display: grid; /* CSS грид */
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Автоподбор колонок */
+	gap: 30px; /* Расстояние между элементами */
+	margin-top: 30px; /* Верхний внешний отступ */
 }
 
-.news-card {
-	background: white;
-	border-radius: 5px;
-	box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-	overflow: hidden;
-	transition: transform 0.3s;
+.news-card { /* Стили для карточки новости */
+	background: white; /* Белый фон */
+	border-radius: 5px; /* Скругление углов */
+	box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Тень */
+	overflow: hidden; /* Скрытие выходящего за границы контента */
+	transition: transform 0.3s; /* Плавная анимация */
 }
 
-.news-card:hover {
-	transform: translateY(-5px);
+.news-card:hover { /* Стили для карточки новости при наведении */
+	transform: translateY(-5px); /* Сдвиг вверх */
 }
 
-.news-image {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
+.news-image { /* Стили для изображения новости */
+	width: 100%; /* Ширина 100% */
+	height: 200px; /* Фиксированная высота */
+	object-fit: cover; /* Обрезка изображения с сохранением пропорций */
 }
 
-.news-content {
-	padding: 20px;
+.news-content { /* Стили для контента новости */
+	padding: 20px; /* Внутренние отступы */
 }
 
-.news-date {
-	color: var(--primary-red);
-	font-size: 14px;
-	margin-bottom: 10px;
-	display: block;
+.news-date { /* Стили для даты новости */
+	color: var(--primary-red); /* Цвет текста из CSS-переменной */
+	font-size: 14px; /* Размер шрифта */
+	margin-bottom: 10px; /* Нижний внешний отступ */
+	display: block; /* Блочный элемент */
 }
 
-.news-title {
-	margin: 0 0 15px 0;
-	font-size: 20px;
+.news-title { /* Стили для заголовка новости */
+	margin: 0 0 15px 0; /* Внешние отступы */
+	font-size: 20px; /* Размер шрифта */
 }
 
-.news-preview {
-	margin-bottom: 20px;
-	line-height: 1.5;
+.news-preview { /* Стили для превью текста новости */
+	margin-bottom: 20px; /* Нижний внешний отступ */
+	line-height: 1.5; /* Межстрочный интервал */
 }
 
-.read-more {
-	display: inline-block;
-	background-color: var(--primary-blue);
-	color: white;
-	padding: 10px 20px;
-	border-radius: 3px;
-	text-decoration: none;
-	font-weight: 500;
-	transition: background-color 0.3s;
+.read-more { /* Стили для кнопки "Читать далее" */
+	display: inline-block; /* Строчно-блочный элемент */
+	background-color: var(--primary-blue); /* Цвет фона из CSS-переменной */
+	color: white; /* Белый текст */
+	padding: 10px 20px; /* Внутренние отступы */
+	border-radius: 3px; /* Скругление углов */
+	text-decoration: none; /* Без подчеркивания */
+	font-weight: 500; /* Средняя жирность шрифта */
+	transition: background-color 0.3s; /* Плавное изменение цвета */
 }
 
-.read-more:hover {
-	background-color: #004080;
+.read-more:hover { /* Стили для кнопки "Читать далее" при наведении */
+	background-color: #004080; /* Темно-синий цвет */
 }
 
-.modal {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: rgba(0,0,0,0.7);
-	z-index: 1000;
-	justify-content: center;
-	align-items: center;
+.modal { /* Стили для модального окна */
+	display: none; /* Скрыто по умолчанию */
+	position: fixed; /* Фиксированное позиционирование */
+	top: 0; /* Позиционирование сверху */
+	left: 0; /* Позиционирование слева */
+	right: 0; /* Позиционирование справа */
+	bottom: 0; /* Позиционирование снизу */
+	background-color: rgba(0,0,0,0.7); /* Полупрозрачный черный фон */
+	z-index: 1000; /* Высокий z-index для перекрытия других элементов */
+	justify-content: center; /* Выравнивание по горизонтали */
+	align-items: center; /* Выравнивание по вертикали */
 }
 
-.modal-content {
-	background: white;
-	padding: 30px;
-	border-radius: 5px;
-	max-width: 800px;
-	width: 90%;
-	max-height: 90vh;
-	overflow-y: auto;
-	position: relative;
+.modal-content { /* Стили для содержимого модального окна */
+	background: white; /* Белый фон */
+	padding: 30px; /* Внутренние отступы */
+	border-radius: 5px; /* Скругление углов */
+	max-width: 800px; /* Максимальная ширина */
+	width: 90%; /* Ширина 90% от родителя */
+	max-height: 90vh; /* Максимальная высота */
+	overflow-y: auto; /* Вертикальная прокрутка при необходимости */
+	position: relative; /* Относительное позиционирование */
 }
 
-.close-modal {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	font-size: 24px;
-	cursor: pointer;
-	color: var(--dark-gray);
+.close-modal { /* Стили для кнопки закрытия модального окна */
+	position: absolute; /* Абсолютное позиционирование */
+	top: 15px; /* Отступ сверху */
+	right: 15px; /* Отступ справа */
+	font-size: 24px; /* Размер шрифта */
+	cursor: pointer; /* Курсор-указатель */
+	color: var(--dark-gray); /* Цвет текста из CSS-переменной */
 }
 
-.modal-title {
-	margin-top: 0;
-	color: var(--primary-blue);
+.modal-title { /* Стили для заголовка модального окна */
+	margin-top: 0; /* Убираем верхний отступ */
+	color: var(--primary-blue); /* Цвет текста из CSS-переменной */
 }
 
-.modal-date {
-	color: var(--primary-red);
-	margin-bottom: 20px;
-	display: block;
+.modal-date { /* Стили для даты в модальном окне */
+	color: var(--primary-red); /* Цвет текста из CSS-переменной */
+	margin-bottom: 20px; /* Нижний внешний отступ */
+	display: block; /* Блочный элемент */
 }
 		
-.video-container {
-	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
-	overflow: hidden;
-	margin: 40px 0;
-	border-radius: 8px;
-	box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.video-container { /* Стили для контейнера видео */
+	position: relative; /* Относительное позиционирование */
+	padding-bottom: 56.25%; /* Соотношение сторон 16:9 */
+	height: 0; /* Высота 0 (определяется padding-bottom) */
+	overflow: hidden; /* Скрытие выходящего за границы контента */
+	margin: 40px 0; /* Внешние отступы */
+	border-radius: 8px; /* Скругление углов */
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Тень */
 }
 
-.video-container iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	border: none;
+.video-container iframe { /* Стили для iframe видео */
+	position: absolute; /* Абсолютное позиционирование */
+	top: 0; /* Позиционирование сверху */
+	left: 0; /* Позиционирование слева */
+	width: 100%; /* Ширина 100% */
+	height: 100%; /* Высота 100% */
+	border: none; /* Без границы */
 }
 
-.video-description {
-	margin-top: 30px;
-	line-height: 1.7;
+.video-description { /* Стили для описания видео */
+	margin-top: 30px; /* Верхний внешний отступ */
+	line-height: 1.7; /* Межстрочный интервал */
 }
 			
-.footer {
-	background-color: var(--dark-gray);
-	color: white;
-	padding: 40px 0;
+.footer { /* Стили для подвала */
+	background-color: var(--dark-gray); /* Цвет фона из CSS-переменной */
+	color: white; /* Белый текст */
+	padding: 40px 0; /* Внутренние отступы */
 }
 
-.footer-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 20px;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 30px;
+.footer-container { /* Стили для контейнера подвала */
+	max-width: 1200px; /* Максимальная ширина */
+	margin: 0 auto; /* Центрирование */
+	padding: 0 20px; /* Внутренние отступы */
+	display: grid; /* CSS Grid */
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Автоподбор колонок */
+	gap: 30px; /* Расстояние между элементами */
 }
 
-.footer-column h3 {
-	color: white;
-	margin-top: 0;
+.footer-column h3 { /* Стили для заголовка колонки подвала */
+	color: white; /* Белый текст */
+	margin-top: 0; /* Убираем верхний отступ */
 }
 
-.footer-column a {
-	color: #ccc;
-	text-decoration: none;
-	display: block;
-	margin-bottom: 10px;
+.footer-column a { /* Стили для ссылок в подвале */
+	color: #ccc; /* Светло-серый текст */
+	text-decoration: none; /* Без подчеркивания */
+	display: block; /* Блочный элемент */
+	margin-bottom: 10px; /* Нижний внешний отступ */
 }
 
-.footer-column a:hover {
-	color: white;
+.footer-column a:hover { /* Стили для ссылок в подвале при наведении */
+	color: white; /* Белый текст */
 }
 
-.copyright {
-	text-align: center;
-	margin-top: 40px;
-	padding-top: 20px;
-	border-top: 1px solid #444;
+.copyright { /* Стили для блока с копирайтом */
+	text-align: center; /* Выравнивание по центру */
+	margin-top: 40px; /* Верхний внешний отступ */
+	padding-top: 20px; /* Верхний внутренний отступ */
+	border-top: 1px solid #444; /* Граница сверху */
 }
 
-.back-to-top {
-	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	background-color: var(--primary-blue);
-	color: white;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-decoration: none;
-	font-size: 24px;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-	z-index: 99;
+.back-to-top { /* Стили для кнопки "Наверх" */
+	position: fixed; /* Фиксированное позиционирование */
+	bottom: 30px; /* Отступ снизу */
+	right: 30px; /* Отступ справа */
+	background-color: var(--primary-blue); /* Цвет фона из CSS-переменной */
+	color: white; /* Белый текст */
+	width: 50px; /* Ширина */
+	height: 50px; /* Высота */
+	border-radius: 50%; /* Круглая форма */
+	display: flex; /* Flex-контейнер */
+	justify-content: center; /* Выравнивание по горизонтали */
+	align-items: center; /* Выравнивание по вертикали */
+	text-decoration: none; /* Без подчеркивания */
+	font-size: 24px; /* Размер шрифта */
+	box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Тень */
+	z-index: 99; /* Высокий z-index для перекрытия других элементов */
 }
 
-@media (max-width: 768px) {
-	.converter {
-		flex-direction: column;
-		align-items: flex-start;
+@media (max-width: 768px) { /* Медиазапрос для адаптации под экраны до 768px */
+	.converter { /* Изменение направления flex-контейнера конвертера */
+		flex-direction: column; /* Вертикальное расположение */
+		align-items: flex-start; /* Выравнивание по левому краю */
 	}
 	
-	.chart {
-		height: 300px;
-		flex-wrap: wrap;
-		justify-content: center;
+	.chart { /* Изменение стилей графика */
+		height: 300px; /* Уменьшенная высота */
+		flex-wrap: wrap; /* Перенос на новую строку */
+		justify-content: center; /* Выравнивание по центру */
 	}
 	
-	.bar-container {
-		margin: 0 3px;
-		max-width: 30px;
+	.bar-container { /* Изменение стилей контейнера столбца */
+		margin: 0 3px; /* Уменьшенные отступы */
+		max-width: 30px; /* Уменьшенная максимальная ширина */
 	}
 	
-	.bar {
-		width: 20px;
+	.bar { /* Изменение ширины столбца */
+		width: 20px; /* Уменьшенная ширина */
 	}
 	
-	.contacts-section {
-		grid-template-columns: 1fr;
+	.contacts-section { /* Изменение сетки для секции контактов */
+		grid-template-columns: 1fr; /* Одна колонка */
 	}
 	
-	.map-container {
-		height: 300px;
+	.map-container { /* Изменение высоты контейнера карты */
+		height: 300px; /* Уменьшенная высота */
 	}
 	
-	.container {
-		padding-right: 20px;
+	.container { /* Изменение отступов контейнера */
+		padding-right: 20px; /* Правый отступ */
 	}
 	
-	.main-menu {
-		width: 160px;
+	.main-menu { /* Изменение ширины главного меню */
+		width: 160px; /* Фиксированная ширина */
 	}
 }
 
