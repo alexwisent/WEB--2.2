@@ -610,7 +610,6 @@ h2 {
 	}
 }
 
-
 @media (max-width: 768px) { /* Медиа-запрос для экранов до 768px */
 	.photo-gallery {                    
 		flex-direction: column; /* Колонки вместо строки */                    
