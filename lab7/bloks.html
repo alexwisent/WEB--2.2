@@ -9,9 +9,26 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
 
-        <script></script>
+        <script>
+            function addNewBlock() { // обработчик нажатия, в котором будет создаваться блок 
+                let newBlock = document.createElement('div'); //newBlock - переменная для блока
+                newBlock.className = 'added-block';
+                newBlock.style.backgroundColor = 'green';
+                newBlock.style.height = '40px';
 
-        <style></style>
+                document.querySelector('main').appendChild(newBlock);
+            }
+        </script>
+
+        <style>
+            .added-block {
+                /* background-color: green;
+                height: 40px; */
+                border: 2px solid purple; /* Фиолетовая рамка */
+                border-radius: 5px; /* Слегка скругленные углы */
+                margin: 10px 0; /* Внешние отступы сверху и снизу */
+            }
+        </style>
     </head>     
 
     <body>
@@ -20,9 +37,7 @@
         </header>
 
         <main>
-            <h1>Лабораторная 7</h1>
-
-            <ul></ul>
+            <button onclick="addNewBlock()">Добавить новый блок</button>
         </main>
 
         <footer > 
