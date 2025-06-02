@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Анчугова Софья Алексеевна. "Прогноз погоды в Новосибирске"</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-16x16.png">
+        
+        <style>
+            .weather-container {
+                margin-top: 20px;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+            }
+            .weather-item {
+                margin-bottom: 10px;
+                padding: 8px;
+                background-color: white;
+                border-radius: 3px;
+            }
+            .loading {
+                color: #666;
+                font-style: italic;
+            }
+            .error {
+                color: red;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Координаты Новосибирска
+                const latitude = 55.0415;
+                const longitude = 82.9346;
+                
+                // Часовой пояс (Бангкок = Новосибирск)
+                const timezone = 'Asia/Bangkok';
+                
+                // URL API с параметрами
+                const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&timezone=${encodeURIComponent(timezone)}`;
+                
+                // Получаем данные
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Ошибка сети');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        displayWeatherData(data);
+                    })
+                    .catch(error => {
+                        document.getElementById('weather-data').innerHTML = 
+                            `<div class="error">Ошибка при получении данных: ${error.message}</div>`;
+                    });
+            });
+
+            function displayWeatherData(data) {
+                const weatherContainer = document.getElementById('weather-data');
+                
+                // Проверяем, есть ли нужные данные
+                if (!data.hourly || !data.hourly.time || !data.hourly.temperature_2m) {
+                    weatherContainer.innerHTML = '<div class="error">Не удалось получить данные о погоде</div>';
+                    return;
+                }
+                
+                const times = data.hourly.time;
+                const temperatures = data.hourly.temperature_2m;
+                
+                // Получаем текущую дату с учетом часового пояса Бангкока
+                const now = new Date();
+                const options = { timeZone: 'Asia/Bangkok', day: 'numeric', month: 'numeric', year: 'numeric' };
+                const todayFormatted = now.toLocaleDateString('ru-RU', options); // формат ДД.ММ.ГГГГ
+                
+                // Для сравнения дат используем YYYY-MM-DD
+                const todayForCompare = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Bangkok' });
+                
+                // Ищем нужные часы (8, 12, 20)
+                const targetHours = [8, 12, 20];
+                const results = [];
+                
+                for (let i = 0; i < times.length; i++) {
+                    const timeStr = times[i];
+                    const [datePart, timePart] = timeStr.split('T');
+                    
+                    if (datePart === todayForCompare) {
+                        const hour = parseInt(timePart.split(':')[0]);
+                        if (targetHours.includes(hour)) {
+                            results.push({
+                                time: `${hour}:00`,
+                                temp: temperatures[i]
+                            });
+                        }
+                    }
+                }
+                
+                // Формируем HTML для отображения
+                if (results.length > 0) {
+                    let html = '<h2>Прогноз температуры в Новосибирске</h2>';
+                    html += `<p>Температура на ${todayFormatted}:</p>`;
+                    results.forEach(item => {
+                        html += `
+                            <div class="weather-item">
+                                <strong>${item.time}</strong>: ${item.temp} °C
+                            </div>
+                        `;
+                    });
+                    weatherContainer.innerHTML = html;
+                } else {
+                    weatherContainer.innerHTML = `<div class="error">Данные за ${todayFormatted} не найдены. Попробуйте обновить страницу позже.</div>`;
+                }
+            }
+        </script>
+    </head>     
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+        </header>
+
+        <main>
+            <div id="weather-data" class="loading">Загрузка данных о погоде...</div>
+        </main>
+
+        <footer> 
+            &copy; Софья Анчугова, ФБИ-32, 2 курс, 2025
+        </footer>        
+    </body>
+</html>
