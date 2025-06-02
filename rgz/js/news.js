@@ -1,8 +1,8 @@
 // Полные тексты новостей
 const newsData = {
 	1: {
-		title: "Внедрение новой системы расчетов",
-		date: "15 мая 2025",
+		title: "Внедрение новой системы расчетов", // Заголовок новости
+		date: "15 мая 2025", // Дата публикации
 		text: "<p>Калужская сбытовая компания завершила внедрение современной системы расчетов с потребителями. Новая платформа позволит значительно ускорить обработку платежей и повысить точность расчетов.</p><p>Система основана на передовых технологиях обработки данных и включает в себя модули автоматической проверки показаний счетчиков, анализа потребления и формирования квитанций. Внедрение системы потребовало масштабной работы по переносу данных и обучению персонала.</p><p>«Мы стремимся сделать процесс расчетов максимально прозрачным и удобным для наших потребителей», — отметил технический директор компании.</p>"
 	},
 	2: {
@@ -54,23 +54,24 @@ const newsData = {
 
 // Функция для отображения новостей
 function displayNews() {
-    const newsContainer = document.getElementById('newsContainer');
+    const newsContainer = document.getElementById('newsContainer'); // Находим контейнер, куда будем выводить новости
     newsContainer.innerHTML = ''; // Очистить контейнер перед добавлением новостей
 
-    for (const id in newsData) {
-        const news = newsData[id];
+    for (const id in newsData) { // Перебираем все новости в объекте newsData
+        const news = newsData[id]; // Получаем данные конкретной новости
 		const previewText = news.text.length > 100 ? news.text.substring(0, 100) + '...' : news.text; // Сокращаем текст до 100 символов для превью
-        const newsCard = document.createElement('div');
-        newsCard.classList.add('news-card');
-        newsCard.innerHTML = `
+        const newsCard = document.createElement('div'); // Создаем элемент карточки новости
+        newsCard.classList.add('news-card'); // Добавляем класс для стилизации
+        // Заполняем карточку HTML-содержимым
+		newsCard.innerHTML = ` 
             <div class="news-content">
-                <span class="news-date">${news.date}</span>
+                <span class="news-date">${news.date}</span> 
                 <h3 class="news-title">${news.title}</h3>
                 <p class="news-preview">${previewText}</p>
                 <a href="#" class="read-more" data-id="${id}">Читать далее</a>
             </div>
         `;
-        newsContainer.appendChild(newsCard);
+        newsContainer.appendChild(newsCard); // Добавляем готовую карточку в контейнер
     }
 }
 
@@ -80,14 +81,15 @@ displayNews();
 // Обработчики для кнопок "Читать далее"
 document.querySelectorAll('.read-more').forEach(button => {
 	button.addEventListener('click', function(e) {
-		e.preventDefault();
-		const newsId = this.getAttribute('data-id');
-		const news = newsData[newsId];
+		e.preventDefault(); // Отменяем стандартное поведение ссылки
+		const newsId = this.getAttribute('data-id'); // Получаем ID новости из атрибута data-id
+		const news = newsData[newsId]; // Получаем данные соответствующей новости
 		
+		// Заполняем модальное окно данными новости
 		document.getElementById('modalTitle').textContent = news.title;
 		document.getElementById('modalDate').textContent = news.date;
 		document.getElementById('modalText').innerHTML = news.text;
-		document.getElementById('newsModal').style.display = 'flex';
+		document.getElementById('newsModal').style.display = 'flex'; // Показываем модальное окно (flex для центрирования)
 	});
 });
 
@@ -98,7 +100,7 @@ document.querySelector('.close-modal').addEventListener('click', function() {
 
 // Закрытие при клике вне модального окна
 window.addEventListener('click', function(e) {
-	if (e.target === document.getElementById('newsModal')) {
+	if (e.target === document.getElementById('newsModal')) { // Проверяем, был ли клик именно по модальному окну (а не по его содержимому)
 		document.getElementById('newsModal').style.display = 'none';
 	}
 });
