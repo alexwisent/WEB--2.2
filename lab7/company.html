@@ -3,15 +3,75 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Анчугова Софья Алексеевна. "Курс доллара"</title>
+        <title>Анчугова Софья Алексеевна. "Котировки акций компании Россети Центр"</title>
         <link rel="stylesheet" href="../main.css">
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         
-        <script src=""></script>
+        <script src="company.js"></script>
 
-        <script></script>
+        <script>
+            function showStockExchange() {
+                let tableBody = document.querySelector('#stock-table tbody'); // # означает выбор элемента по его id, а пробел между селекторами означает вложенность (дочерний элемент)
+                tableBody.innerHTML = ''; // Очищаем таблицу перед заполнением
+                
+                let sum = 0;
+                let max = stockPrices[0];
+                let min = stockPrices[0];
+                
+                for (let i = 0; i < stockPrices.length; i++) {
+                    let tr = document.createElement('tr');
+                    
+                    // Добавляем дату
+                    let tdDate = document.createElement('td');
+                    tdDate.innerText = stockDates[i];
+                    tr.appendChild(tdDate);
+                    
+                    // Добавляем цену
+                    let tdPrice = document.createElement('td');
+                    tdPrice.innerText = stockPrices[i].toFixed(4);
+                    tr.appendChild(tdPrice);
+                    
+                    // Добавляем разницу
+                    let tdDiff = document.createElement('td');
+                    if (i > 0) {
+                        let diff = stockPrices[i] - stockPrices[i-1];
+                        tdDiff.innerText = diff.toFixed(4);
+                        
+                        // Устанавливаем цвет в зависимости от значения разницы
+                        if (diff > 0) {
+                            tdDiff.className = 'positive';
+                        } else if (diff < 0) {
+                            tdDiff.className = 'negative';
+                        }
+                    } else {
+                        tdDiff.innerText = '-';
+                    }
+                    tr.appendChild(tdDiff);
+                    
+                    tableBody.appendChild(tr);
+                    
+                    // Считаем сумму для среднего
+                    sum += stockPrices[i];
+                    
+                    // Находим максимальное и минимальное значения
+                    if (stockPrices[i] > max) max = stockPrices[i];
+                    if (stockPrices[i] < min) min = stockPrices[i];
+                }
+                
+                // Вычисляем среднее значение
+                let average = sum / stockPrices.length;
+                
+                // Формируем информацию для вывода
+                let detailText = `Среднее значение: ${average.toFixed(4)} | `;
+                detailText += `Максимальное: ${max.toFixed(4)} | `;
+                detailText += `Минимальное: ${min.toFixed(4)}`;
+                
+                document.getElementById('stock-detail').innerText = detailText;
+                document.querySelector('button').style.display = 'none';
+            }
+        </script>
 
         <style></style>
     </head>     
@@ -22,9 +82,18 @@
         </header>
 
         <main>
-            <button onclick="showExchange()">Курс доллара</button> <!-- кнопка, которая будет создавать таблицу с курсом доллара за 10 дней -->
-            <table border="1" id="dollar-table"></table>
-            <div id="detail"></div> <!-- вывод среднего значения курса -->            
+            <button onclick="showStockExchange()">Курс акций Россети Центр</button>
+            <table border="1" id="stock-table">
+                <thead>
+                    <tr>
+                        <th>Дата</th> <!-- заголовки колонок -->
+                        <th>Цена акций</th>
+                        <th>Разница</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="stock-detail"></div> <!-- вывод среднего значения курса -->  
         </main>
 
         <footer > 
