@@ -10,30 +10,30 @@
         <link rel="icon" href="../favicon-16x16.png">
         
         <style>
-            .weather-container {
+            .weather-container { /* Контейнер для погодных данных */
                 margin-top: 20px;
                 padding: 15px;
                 border: 1px solid #ddd;
                 border-radius: 5px;
                 background-color: #f9f9f9;
             }
-            .weather-item {
+            .weather-item { /* Элемент с данными о погоде */
                 margin-bottom: 10px;
                 padding: 8px;
                 background-color: white;
                 border-radius: 3px;
             }
-            .loading {
+            .loading { /* Стиль для состояния загрузки */
                 color: #666;
                 font-style: italic;
             }
-            .error {
+            .error { /* Стиль для сообщений об ошибках */
                 color: red;
             }
         </style>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() { // Ждем полной загрузки DOM перед выполнением скрипта
                 // Координаты Новосибирска
                 const latitude = 55.0415;
                 const longitude = 82.9346;
@@ -41,19 +41,19 @@
                 // Часовой пояс (Бангкок = Новосибирск)
                 const timezone = 'Asia/Bangkok';
                 
-                // URL API с параметрами
+                // Формируем URL для запроса к API погоды
                 const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&timezone=${encodeURIComponent(timezone)}`;
                 
                 // Получаем данные
                 fetch(apiUrl)
                     .then(response => {
-                        if (!response.ok) {
+                        if (!response.ok) { // Проверяем успешность запроса
                             throw new Error('Ошибка сети');
                         }
-                        return response.json();
+                        return response.json(); // Преобразуем ответ в JSON
                     })
                     .then(data => {
-                        displayWeatherData(data);
+                        displayWeatherData(data); // Если данные получены, отображаем их
                     })
                     .catch(error => {
                         document.getElementById('weather-data').innerHTML = 
@@ -61,8 +61,8 @@
                     });
             });
 
-            function displayWeatherData(data) {
-                const weatherContainer = document.getElementById('weather-data');
+            function displayWeatherData(data) { // Функция для отображения данных о погоде
+                const weatherContainer = document.getElementById('weather-data'); // Получаем контейнер для вывода данных
                 
                 // Проверяем, есть ли нужные данные
                 if (!data.hourly || !data.hourly.time || !data.hourly.temperature_2m) {
@@ -70,12 +70,13 @@
                     return;
                 }
                 
+                // Извлекаем массивы времени и температуры
                 const times = data.hourly.time;
                 const temperatures = data.hourly.temperature_2m;
                 
                 // Получаем текущую дату с учетом часового пояса Бангкока
                 const now = new Date();
-                const options = { timeZone: 'Asia/Bangkok', day: 'numeric', month: 'numeric', year: 'numeric' };
+                const options = { timeZone: 'Asia/Bangkok', day: 'numeric', month: 'numeric', year: 'numeric' }; // Настройки для форматирования даты
                 const todayFormatted = now.toLocaleDateString('ru-RU', options); // формат ДД.ММ.ГГГГ
                 
                 // Для сравнения дат используем YYYY-MM-DD
@@ -85,14 +86,14 @@
                 const targetHours = [8, 12, 20];
                 const results = [];
                 
-                for (let i = 0; i < times.length; i++) {
+                for (let i = 0; i < times.length; i++) { // Перебираем все полученные данные
                     const timeStr = times[i];
-                    const [datePart, timePart] = timeStr.split('T');
+                    const [datePart, timePart] = timeStr.split('T'); // Разделяем дату и время
                     
-                    if (datePart === todayForCompare) {
-                        const hour = parseInt(timePart.split(':')[0]);
-                        if (targetHours.includes(hour)) {
-                            results.push({
+                    if (datePart === todayForCompare) { // Если дата совпадает с сегодняшней
+                        const hour = parseInt(timePart.split(':')[0]); // Получаем час из времени
+                        if (targetHours.includes(hour)) { // Проверяем, входит ли час в наш список целевых часов
+                            results.push({ // Добавляем данные в результаты
                                 time: `${hour}:00`,
                                 temp: temperatures[i]
                             });
@@ -100,7 +101,7 @@
                     }
                 }
                 
-                // Формируем HTML для отображения
+                // Формируем HTML для отображения результатов
                 if (results.length > 0) {
                     let html = '<h2>Прогноз температуры в Новосибирске</h2>';
                     html += `<p>Температура на ${todayFormatted}:</p>`;
@@ -111,9 +112,9 @@
                             </div>
                         `;
                     });
-                    weatherContainer.innerHTML = html;
+                    weatherContainer.innerHTML = html; // Вставляем HTML в контейнер
                 } else {
-                    weatherContainer.innerHTML = `<div class="error">Данные за ${todayFormatted} не найдены. Попробуйте обновить страницу позже.</div>`;
+                    weatherContainer.innerHTML = `<div class="error">Данные за ${todayFormatted} не найдены.</div>`; // Если данных нет, показываем сообщение
                 }
             }
         </script>
