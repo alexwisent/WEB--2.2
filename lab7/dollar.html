@@ -29,10 +29,19 @@
                 }
                 let average = sum / exchange.length;
                 average = average.toFixed(2); // 2 числа после запятой
+
+                document.getElementById('detail').innerText = 'Средний курс: ' + average; // Вывод среднего значения
+                                
+                document.querySelector('button').style.display = 'none'; // Скрываем кнопку после нажатия
             }
         </script>
 
-        <style> </style>
+        <style>
+            #detail {
+                margin-top: 15px; /* отступ сверху */
+                font-weight: bold; /* жирный шрифт */
+            }
+        </style>
     </head>     
 
     <body>
