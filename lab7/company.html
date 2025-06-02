@@ -64,11 +64,11 @@
                 let average = sum / stockPrices.length;
                 
                 // Формируем информацию для вывода
-                let detailText = `Среднее значение: ${average.toFixed(4)} | `;
-                detailText += `Максимальное: ${max.toFixed(4)} | `;
+                let detailText = `Среднее значение: ${average.toFixed(4)}<br>` ;
+                detailText += `Максимальное: ${max.toFixed(4)}<br>` ;
                 detailText += `Минимальное: ${min.toFixed(4)}`;
                 
-                document.getElementById('stock-detail').innerText = detailText;
+                document.getElementById('stock-detail').innerHTML = detailText;
                 document.querySelector('button').style.display = 'none';
             }
         </script>
