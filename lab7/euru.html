@@ -17,12 +17,124 @@
                         return response.json(); // обработать ответ (response), указав, что ответ прилетел в формате JSON
                     })
                     .then(function(json) {
-                        alert(json.Valute.EUR.Value); // выводим на консоль полученное значение
+                        const eur = json.Valute.EUR;
+                        const prevEur = json.Valute.EUR.Previous;
+                        
+                        const currentRate = eur.Value.toFixed(2);
+                        const previousRate = prevEur.toFixed(2);
+                        const difference = (eur.Value - prevEur).toFixed(2);
+                        
+                        const rateElement = document.getElementById('current-rate');
+                        const prevRateElement = document.getElementById('previous-rate');
+                        const diffElement = document.getElementById('difference');
+                        const dateElement = document.getElementById('rate-date');
+                        const container = document.getElementById('exchange-rate');
+                        
+                        rateElement.textContent = currentRate + ' руб.';
+                        prevRateElement.textContent = previousRate + ' руб.';
+                        
+                        if (difference > 0) {
+                            diffElement.textContent = '▲ +' + difference + ' руб.';
+                            diffElement.className = 'difference up';
+                        } else if (difference < 0) {
+                            diffElement.textContent = '▼ ' + difference + ' руб.';
+                            diffElement.className = 'difference down';
+                        } else {
+                            diffElement.textContent = '▬ без изменений';
+                            diffElement.className = 'difference';
+                        }
+                        
+                        dateElement.textContent = 'Текущий курс на ' + new Date(json.Date).toLocaleDateString() + 
+                            ' (предыдущий: ' + new Date(json.PreviousDate).toLocaleDateString() + ')';
+
+                        container.style.display = 'block';
                     })
+                    .catch(function(error) {
+                        console.error('Ошибка при получении данных:', error);
+                        const container = document.getElementById('exchange-rate');
+                        container.innerHTML = '<div style="color: red;">Не удалось загрузить курс евро.</div>';
+                        container.style.display = 'block';
+                    });
             }
         </script>
 
-        <style></style>
+        <style>
+            .exchange-rate {
+                margin: 20px auto;
+                padding: 20px;
+                border: 2px solid #4CAF50;
+                border-radius: 10px;
+                background-color: #f8f8f8;
+                max-width: 450px;
+                text-align: center;
+                font-family: Arial, sans-serif;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                display: none;
+            }
+            
+            .rate-value {
+                font-size: 24px;
+                font-weight: bold;
+                color: #2E7D32;
+                margin: 10px 0;
+            }
+            
+            .previous-rate {
+                font-size: 18px;
+                color: #555;
+                margin: 8px 0;
+            }
+            
+            .difference {
+                font-size: 18px;
+                margin: 10px 0;
+                padding: 8px;
+                border-radius: 5px;
+            }
+            
+            .up {
+                color: #D32F2F;
+                background-color: #FFEBEE;
+            }
+            
+            .down {
+                color: #388E3C;
+                background-color: #E8F5E9;
+            }
+            
+            .rate-date {
+                font-size: 14px;
+                color: #666;
+                font-style: italic;
+                margin-top: 5px;
+            }
+            
+            button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            
+            button:hover {
+                background-color: #45a049;
+            }
+            
+            .info-block {
+                margin: 15px 0;
+                padding: 10px;
+                background-color: #E3F2FD;
+                border-radius: 5px;
+            }
+        </style>
     </head>     
 
     <body>
@@ -32,6 +144,23 @@
 
         <main>
             <button onclick="getEuroExchangeRate()">Курс евро</button>
+            <div id="exchange-rate" class="exchange-rate">
+                <h3>Курс евро к рублю</h3>
+                
+                <div class="info-block">
+                    <div>Текущий курс:</div>
+                    <div id="current-rate" class="rate-value"></div>
+                </div>
+                
+                <div class="info-block">
+                    <div>Предыдущий курс:</div>
+                    <div id="previous-rate" class="previous-rate"></div>
+                </div>
+                
+                <div id="difference" class="difference"></div>
+                
+                <div id="rate-date" class="rate-date"></div>
+            </div>
         </main>
 
         <footer > 
