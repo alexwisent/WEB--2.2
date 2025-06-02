@@ -8,14 +8,11 @@
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
-        <script></script>
+        
+        <script src="dollar-data.js"></script> <!-- подключаем данные из файла -->
+
         <script>
             function showExchange() {
-                const exchange = [
-                    80.8883, 80.5500, 80.2237, 80.3134, 80.7689, 80.4137, 
-                    80.3075, 79.7530, 79.7357, 79.7108
-                ];
-
                 let table = document.getElementById('dollar-table'); // Найдём таблицу по id (Находить её будем до цикла, чтобы вновь и вновь не заставлять браузер искать нужный тег)
                 for (let i = 0; i < exchange.length; i++) { // будем сравнивать переменную-счётчик с длиной массива exchange.length
                     let tr = document.createElement('tr'); // строчка
