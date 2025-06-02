@@ -13,6 +13,12 @@
             function getEuroExchangeRate() {
                 const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
                 fetch(url)
+                    .then(function(response) {
+                        return response.json(); // обработать ответ (response), указав, что ответ прилетел в формате JSON
+                    })
+                    .then(function(json) {
+                        alert(json.Valute.EUR.Value); // выводим на консоль полученное значение
+                    })
             }
         </script>
 
@@ -24,7 +30,9 @@
             НГТУ, ФБ, Лабораторная работа 7
         </header>
 
-        <main></main>
+        <main>
+            <button onclick="getEuroExchangeRate()">Курс евро</button>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
