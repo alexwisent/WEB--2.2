@@ -8,9 +8,8 @@
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
-
-        <script></script>
-
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        
         <style></style>
     </head>     
 
@@ -19,10 +18,25 @@
             НГТУ, ФБ, Лабораторная работа 7
         </header>
 
-        <main></main>
+        <main>
+            <div id="app">
+                <h1 :title="messageRus">{{ message }}</h1>
+            </div>
+        </main>
 
         <footer > 
             &copy: Софья Анчугова, ФБИ-32, 2 курс, 2025
-        </footer>        
+        </footer>
+        
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        message: 'Hello!',
+                        messageRus: 'Привет!',
+                    }
+                },
+            }).mount('#app')
+        </script>
     </body>
 </html>
