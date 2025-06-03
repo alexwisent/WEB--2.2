@@ -9,11 +9,9 @@
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon-16x16.png">
         
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous"> <!-- Подключение иконок Bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        
-        <style></style>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- Подключение Vue.js -->
     </head>     
 
     <body>
@@ -22,8 +20,8 @@
         </header>
 
         <main>
-            <div id="app">
-                <h1 :title="messageRus">{{ message }}</h1>
+            <div id="app"> <!-- Корневой элемент Vue приложения -->
+                <h1 :title="messageRus">{{ message }}</h1> <!-- Заголовок с динамическим title и текстом -->
                 <p>Счётчик: {{ counter }}</p>
                 <button @click="incCounter" class="btn btn-primary" v-if="counter < 10">
                     <i class="bi bi-plus-square"></i> <!-- красивый плюсик -->
@@ -31,7 +29,7 @@
                 <button @click="decCounter" class="btn btn-primary" v-if="counter > 0">
                     <i class="bi bi-dash-square"></i> <!-- красивый минусик -->
                 </button>
-                <hr>
+                <hr> <!-- Горизонтальная линия -->
                 
                 <h2>Пользователь:</h2>
                 <div class="badge text-bg-warning fs-4">Имя: {{ user.name }}</div>
@@ -41,7 +39,7 @@
 
                 <div class="card" style="width: 18rem;"> <!-- карточка цветов -->
                     <div id="card-body">
-                        <h2 class="card-title">Цветы</h2>
+                        <h2 class="card-title">Цветы</h2> <!-- Заголовок карточки -->
                         <ul class="list-group">
                             <li v-for="(flower, id) in flowers" class="list-group-item"> <!-- flowers – массив, что мы задали на странице ниже, а flower – очередной элемент из этого массива  -->
                                 {{ flower }} <button @click="edit(id, flower)">?</button>
@@ -51,7 +49,7 @@
                 </div>                
                 <hr>
 
-                <h2>Цветы</h2> <!-- таблица -->
+                <h2>Цветы</h2> <!-- таблица с цветами -->
                 <table class="table table-danger">
                     <thead>
                         <tr>
@@ -61,21 +59,21 @@
                     </thead>
                     <tr v-for="(flower, id) in flowers">
                         <td>
-                            <span v-if="flower == null">загружается...</span>
-                            <span v-else>{{ flower }}</span>
+                            <span v-if="flower == null">загружается...</span> <!-- Условное отображение (если цветок null) -->
+                            <span v-else>{{ flower }}</span> <!-- Иначе отображаем цветок -->
                         </td>
                         <td>
-                            <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !== null">
-                                <i class="bi bi-pencil-square"></i>
+                            <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !== null"> <!-- Кнопка редактирования (видна если цветок не null) -->
+                                <i class="bi bi-pencil-square"></i> <!-- Иконка карандаша -->
                             </button>
-                            <div class="spinner-border" role="status" v-if="flower == null"></div>
+                            <div class="spinner-border" role="status" v-if="flower == null"></div> <!-- Спиннер загрузки (виден если цветок null) -->
                         </td>
                     </tr>
                 </table>
                 <hr>
 
                 <h2>Калькулятор</h2>
-                <div class="row g-5">
+                <div class="row g-5"> <!-- Строка с полями калькулятора -->
                     <div class="col-auto">
                         <input type="number" v-model="a" class="form-control">
                     </div>
@@ -104,8 +102,8 @@
         </footer>
         
         <script>
-            Vue.createApp({
-                data() {
+            Vue.createApp({ // Создание Vue приложения
+                data() { // Данные приложения
                     return {
                         message: 'Hello!',
                         messageRus: 'Привет!',
@@ -121,25 +119,25 @@
                         result: '',
                     }
                 },
-                methods: {
-                    incCounter() {
+                methods: { // Методы приложения
+                    incCounter() { // Увеличение счетчика
                         this.counter++; // если мы обращаемся к переменным внутри методов vue, то перед названиями переменных надо писать служебное слово this. 
                     },
-                    decCounter() {
+                    decCounter() { // Уменьшение счетчика
                         this.counter--; 
                     },
-                    edit(id, flower) {
+                    edit(id, flower) { // Редактирование цветка
                         let newName = prompt('Введите имя цветка:', flower);
-                        this.flowers[id] = null;
-                        setTimeout(() => {
-                            this.flowers[id] = newName;
+                        this.flowers[id] = null; // Временное обнуление значения
+                        setTimeout(() => { // Задержка для имитации загрузки
+                            this.flowers[id] = newName; // Установка нового значения
                         }, 3000);
                     },
-                    sum() {
+                    sum() { // Сложение чисел
                         this.result = this.a + this.b;
                     },
                 }
-            }).mount('#app')
+            }).mount('#app') // Монтирование приложения в элемент с id="app"
         </script>
     </body>
 </html>
