@@ -25,14 +25,18 @@
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
                 <p>Счётчик: {{ counter }}</p>
-                <button @click="incCounter" v-if="counter < 10">++</button> <!-- @ - даем понять что нужно использвоать обработчик -->
-                <button @click="decCounter" v-if="counter > 0">--</button>
+                <button @click="incCounter" class="btn btn-primary" v-if="counter < 10">
+                    <i class="bi bi-plus-square"></i> <!-- красивый плюсик -->
+                </button>
+                <button @click="decCounter" class="btn btn-primary" v-if="counter > 0">
+                    <i class="bi bi-dash-square"></i> <!-- красивый минусик -->
+                </button>
                 <hr>
                 
                 <h2>Пользователь:</h2>
-                <div>Имя: {{ user.name }}</div>
-                <div>Возраст: {{ user.age }}</div>
-                <div>Телефон: {{ user.tel }}</div>
+                <div class="badge text-bg-warning fs-4">Имя: {{ user.name }}</div>
+                <div class="badge text-bg-secondary fs-4">Возраст: {{ user.age }}</div>
+                <div class="badge text-bg-info fs-4">Телефон: {{ user.tel }}</div>
                 <hr>
 
                 <div class="card" style="width: 18rem;"> <!-- карточка цветов -->
@@ -76,7 +80,7 @@
                         <input type="number" v-model="a" class="form-control">
                     </div>
                     <div class="col-auto">
-                        +
+                        <i class="bi bi-plus-lg"></i>  <!-- плюсик красивый -->
                     </div>
                     <div class="col-auto">
                         <input type="number" v-model="b" class="form-control">
