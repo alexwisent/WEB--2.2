@@ -35,8 +35,8 @@
                 <hr>
 
                 <h2>Цветы</h2>
-                <ul>
-                    <li v-for="(flower, id) in flowers"> <!-- flowers – массив, что мы задали на странице ниже, а flower – очередной элемент из этого массива  -->
+                <ul class="list-group">
+                    <li v-for="(flower, id) in flowers" class="list-group-item"> <!-- flowers – массив, что мы задали на странице ниже, а flower – очередной элемент из этого массива  -->
                         {{ flower }} <button @click="edit(id, flower)">?</button>
                     </li>
                 </ul>
