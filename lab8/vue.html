@@ -34,8 +34,8 @@
 
                 <h2>Цветы</h2>
                 <ul>
-                    <li v-for="flower in flowers"> <!-- flowers – массив, что мы задали на странице ниже, а flower – очередной элемент из этого массива  -->
-                        {{ flower }}
+                    <li v-for="(flower, id) in flowers"> <!-- flowers – массив, что мы задали на странице ниже, а flower – очередной элемент из этого массива  -->
+                        {{ flower }} <button @click="edit(id, flower)">?</button>
                     </li>
                 </ul>
             </div>
@@ -66,6 +66,10 @@
                     },
                     decCounter() {
                         this.counter--; 
+                    },
+                    edit(id, flower) {
+                        let newName = prompt('Введите имя цветка:', flower);
+                        this.flowers[id] = newName;
                     },
                 }
             }).mount('#app')
