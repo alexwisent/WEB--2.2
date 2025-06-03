@@ -21,6 +21,9 @@
         <main>
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
+                <p>Счётчик: {{ counter }}</p>
+                <button @click="incCounter">++</button> <!-- @ - даем понять что нужно использвоать обработчик -->
+                <button @click="decCounter">--</button>
             </div>
         </main>
 
@@ -34,8 +37,17 @@
                     return {
                         message: 'Hello!',
                         messageRus: 'Привет!',
+                        counter: 1,
                     }
                 },
+                methods: {
+                    incCounter() {
+                        this.counter++; // если мы обращаемся к переменным внутри методов vue, то перед названиями переменных надо писать служебное слово this. 
+                    },
+                    decCounter() {
+                        this.counter--; 
+                    },
+                }
             }).mount('#app')
         </script>
     </body>
