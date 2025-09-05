@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Выдвижной блок</title>
     <style>
-        * {
+        * { /* убираем отступы если были заданы ранее */
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
+        body { /* Стили для тела документа */
             font-family: Arial, sans-serif;
             min-height: 100vh;
             background-color: #f0f0f0;
@@ -23,22 +23,22 @@
             margin: 0 auto;
         }
         
-        .slide-panel {
-            position: fixed;
-            left: -100px; /* Изначально скрыт за левым краем */
-            top: 0;
-            width: 100px;
-            height: 100vh;
-            background-color: red;
-            transition: left 0.1s ease-in-out;
-            z-index: 1000;
+        .slide-panel { /* Стили для выдвижной панели */
+            position: fixed;    /* Фиксированное позиционирование */
+            left: -100px;       /* Изначально скрыт за левым краем */
+            top: 0;             /* Прижат к верхнему краю */
+            width: 100px;       /* Ширина панели */
+            height: 100vh;      /* Высота на весь экран */
+            background-color: red; /* Красный фон */
+            transition: left 0.1s ease-in-out; /* Плавная анимация появления */
+            z-index: 1000;      /* Высокий z-index чтобы быть поверх других элементов */
         }
         
         .slide-panel.visible {
-            left: 0; /* Показываем панель */
+            left: 0; /* Показываем панель (перемещаем в видимую область)*/
         }
         
-        .panel-content {
+        .panel-content { /* Стили пояснения пользователям */
             color: white;
             padding: 20px 10px;
             text-align: center;
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <!-- Основной контент -->
+    <!-- Основной контент (пояснение для пользователя)-->
     <div class="content">
         <h1>Выдвижной блок при наведении</h1>
         <p>Подведите курсор мыши к левому краю окна (ближе чем 100 пикселей), чтобы увидеть красный выдвижной блок.</p>
