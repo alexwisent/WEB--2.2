@@ -5,172 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Поворот картинки</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: Arial, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
             padding: 20px;
         }
         
-        .container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            max-width: 900px;
-            width: 100%;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-        
         .input-container {
-            margin: 20px 0;
+            margin-bottom: 30px;
+            text-align: center;
         }
         
-        label {
+        .input-container label {
             display: block;
             margin-bottom: 10px;
-            font-size: 1.2em;
-            color: #555;
+            font-size: 18px;
             font-weight: bold;
+            color: #333;
         }
         
-        input {
-            padding: 12px 20px;
-            font-size: 1.2em;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            width: 200px;
+        input[type="number"] {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
             text-align: center;
-            transition: border-color 0.3s;
-        }
-        
-        input:focus {
-            outline: none;
-            border-color: #667eea;
+            width: 100px;
         }
         
         .image-container {
-            margin: 30px 0;
-            perspective: 1000px;
+            position: relative;
+            margin: 20px 0;
         }
         
         .rotatable-image {
-            width: 800px;
-            height: 450px;
-            object-fit: cover;
+            display: block;
+            max-width: 300px;
+            height: auto;
+            border: 3px solid #333;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             transition: transform 0.5s ease;
-            display: block;
-            margin: 0 auto;
         }
         
         .rotatable-image:hover {
-            transform: scale(1.02);
+            opacity: 0.9;
         }
         
-        .instructions {
+        .instruction {
             margin-top: 20px;
+            text-align: center;
             color: #666;
-            font-size: 1.1em;
-            line-height: 1.5;
-        }
-        
-        .current-rotation {
-            margin-top: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            font-size: 1.1em;
-            color: #495057;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Поворот картинки</h1>
-        
-        <div class="input-container">
-            <label for="rotation-angle">Угол поворота (градусы):</label>
-            <input type="number" id="rotation-angle" value="15" min="-360" max="360">
-        </div>
-        
-        <div class="image-container">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.1&auto=format&fit=crop&w=800&h=450" 
-                 alt="Горный пейзаж" 
-                 class="rotatable-image" 
-                 id="rotatable-image">
-        </div>
-        
-        <div class="instructions">
-            <p>Наведите курсор на картинку для увеличения</p>
-            <p>Щелкните по картинке, чтобы повернуть её на указанный угол</p>
-            <p>Измените значение в поле ввода для другого угла поворота</p>
-        </div>
-        
-        <div class="current-rotation" id="current-rotation">
-            Текущий угол поворота: 0°
-        </div>
+    <div class="input-container">
+        <label for="rotation-degree">Угол поворота (градусы):</label>
+        <input type="number" id="rotation-degree" value="15" min="-360" max="360">
     </div>
+    
+    <div class="image-container">
+        <img src="smorodina_iagody_listia_1430923_300x225.jpg" 
+             alt="Смородина с ягодами и листьями" 
+             class="rotatable-image" 
+             id="rotatable-image">
+    </div>
+    
+    <p class="instruction">Нажмите на картинку, чтобы повернуть её на указанный угол</p>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const image = document.getElementById('rotatable-image');
-            const angleInput = document.getElementById('rotation-angle');
-            const currentRotationDisplay = document.getElementById('current-rotation');
+            const degreeInput = document.getElementById('rotation-degree');
             
+            // Текущий угол поворота
             let currentRotation = 0;
             
-            // Функция для поворота изображения
-            function rotateImage() {
-                const angle = parseInt(angleInput.value) || 0;
-                currentRotation += angle;
+            // Обработчик клика по картинке
+            image.addEventListener('click', function() {
+                // Получаем значение из поля ввода
+                const degrees = parseInt(degreeInput.value) || 0;
                 
-                // Нормализуем угол (оставляем в диапазоне 0-360)
-                currentRotation = currentRotation % 360;
-                if (currentRotation < 0) currentRotation += 360;
+                // Добавляем новые градусы к текущему углу
+                currentRotation += degrees;
                 
-                // Применяем поворот
+                // Применяем преобразование поворота
                 image.style.transform = `rotate(${currentRotation}deg)`;
-                
-                // Обновляем отображение текущего угла
-                currentRotationDisplay.textContent = `Текущий угол поворота: ${currentRotation}°`;
-            }
-            
-            // Обработчик клика по изображению
-            image.addEventListener('click', rotateImage);
-            
-            // Дополнительно: возможность вращения стрелками
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight') {
-                    angleInput.value = '15';
-                    rotateImage();
-                } else if (e.key === 'ArrowLeft') {
-                    angleInput.value = '-15';
-                    rotateImage();
-                }
             });
             
-            // Фокус на поле ввода при загрузке
-            angleInput.focus();
-            angleInput.select();
+            // Дополнительно: обработчик изменения поля ввода
+            degreeInput.addEventListener('change', function() {
+                // Проверяем и ограничиваем значение
+                let value = parseInt(this.value);
+                if (isNaN(value)) {
+                    this.value = 15;
+                } else if (value < -360) {
+                    this.value = -360;
+                } else if (value > 360) {
+                    this.value = 360;
+                }
+            });
         });
     </script>
 </body>
