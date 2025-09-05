@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выдвижной блок</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .slide-panel {
+            position: fixed;
+            left: -100px; /* Изначально скрыт за левым краем */
+            top: 0;
+            width: 100px;
+            height: 100vh;
+            background-color: red;
+            transition: left 0.1s ease-in-out;
+            z-index: 1000;
+        }
+        
+        .slide-panel.visible {
+            left: 0; /* Показываем панель */
+        }
+        
+        .panel-content {
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Выдвижной блок -->
+    <div class="slide-panel">
+        <div class="panel-content">
+            <h3>Меню</h3>
+            <p>Выдвижная панель</p>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <h1>Выдвижной блок при наведении</h1>
+        <p>Подведите курсор мыши к левому краю окна (ближе чем 100 пикселей), чтобы увидеть красный выдвижной блок.</p>
+        <p>Отведите курсор от левого края, чтобы скрыть блок.</p>
+        <p>Блок будет плавно появляться и скрываться с анимацией продолжительностью 0.1 секунды.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const panel = document.querySelector('.slide-panel');
+            const activationDistance = 100; // Расстояние активации в пикселях
+            
+            // Функция для проверки положения курсора
+            function checkMousePosition(e) {
+                // Проверяем, находится ли курсор ближе 100px к левому краю
+                if (e.clientX <= activationDistance) {
+                    panel.classList.add('visible');
+                } else {
+                    panel.classList.remove('visible');
+                }
+            }
+            
+            // Следим за движением мыши по всему документу
+            document.addEventListener('mousemove', checkMousePosition);
+            
+            // Дополнительно: скрываем панель при уходе мыши с документа
+            document.addEventListener('mouseleave', function() {
+                panel.classList.remove('visible');
+            });
+        });
+    </script>
+</body>
+</html>
