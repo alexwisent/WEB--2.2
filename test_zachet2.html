@@ -6,22 +6,24 @@
     <title>Поворот картинки</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            padding: 20px;
+            font-family: Arial, sans-serif; /* Установка шрифта */
+            display: flex; /* Использование flexbox для центрирования */
+            flex-direction: column; /* Вертикальное расположение элементов */
+            align-items: center; /* Центрирование по горизонтали */
+            justify-content: center; /* Центрирование по вертикали */
+            min-height: 100vh; /* Минимальная высота = высоте окна */
+            margin: 0; /* Убираем внешние отступы */
+            background-color: #f0f0f0; /* Светло-серый фон */
+            padding: 20px; /* Внутренние отступы */
         }
-        
-        .input-container {
+
+        /* Контейнер для поля ввода */
+        .input-container { 
             margin-bottom: 30px;
             text-align: center;
         }
-        
+
+        /* Стили для подписи поля ввода */
         .input-container label {
             display: block;
             margin-bottom: 10px;
@@ -29,7 +31,8 @@
             font-weight: bold;
             color: #333;
         }
-        
+
+        /* Стилизация поля ввода чисел */
         input[type="number"] {
             padding: 10px 15px;
             font-size: 16px;
@@ -38,12 +41,14 @@
             text-align: center;
             width: 100px;
         }
-        
+
+        /* Контейнер для картинки */
         .image-container {
             position: relative;
             margin: 20px 0;
         }
-        
+
+        /* Стилизация картинки */
         .rotatable-image {
             display: block;
             max-width: 300px;
@@ -54,11 +59,13 @@
             cursor: pointer;
             transition: transform 0.5s ease;
         }
-        
+
+        /* Эффект при наведении на картинку */
         .rotatable-image:hover {
             opacity: 0.9;
         }
-        
+
+        /* Стили для текста инструкции */
         .instruction {
             margin-top: 20px;
             text-align: center;
@@ -68,8 +75,9 @@
     </style>
 </head>
 <body>
-    <div class="input-container">
+    <div class="input-container"> <!-- Контейнер с полем ввода для угла поворота -->
         <label for="rotation-degree">Угол поворота (градусы):</label>
+        <!-- Поле ввода с значением по умолчанию 15 -->
         <input type="number" id="rotation-degree" value="15" min="-360" max="360">
     </div>
     
@@ -84,8 +92,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const image = document.getElementById('rotatable-image');
-            const degreeInput = document.getElementById('rotation-degree');
+            const image = document.getElementById('rotatable-image'); // Получаем ссылку на элемент картинки по ID
+            const degreeInput = document.getElementById('rotation-degree'); // Получаем ссылку на поле ввода угла поворота
             
             // Текущий угол поворота
             let currentRotation = 0;
